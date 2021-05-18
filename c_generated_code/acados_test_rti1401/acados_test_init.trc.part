@@ -1,0 +1,19 @@
+
+
+
+-- Type definitions for arrays
+typedef acados_test_ArrayDT0_1_20_Col col flt(64,IEEE)[1][20]
+typedef acados_test_ArrayDT0_6 flt(64,IEEE)[6]
+typedef acados_test_ArrayDT0_120 flt(64,IEEE)[120]
+typedef acados_test_ArrayDT0_147 flt(64,IEEE)[147]
+typedef acados_test_ArrayDT0_7 flt(64,IEEE)[7]
+typedef acados_test_ArrayDT0_1_63_Col col flt(64,IEEE)[1][63]
+typedef acados_test_ArrayDT0_14 flt(64,IEEE)[14]
+typedef acados_test_ArrayDT0_266 flt(64,IEEE)[266]
+typedef acados_test_ArrayDT0_1_38_Col col flt(64,IEEE)[1][38]
+typedef acados_test_ArrayDT0_1_2_Col col flt(64,IEEE)[1][2]
+typedef acados_test_ArrayDT0_1_196_Col col flt(64,IEEE)[1][196]
+typedef acados_test_ArrayDT0_1_49_Col col flt(64,IEEE)[1][49]
+typedef acados_test_ArrayDT0_20 flt(64,IEEE)[20]
+
+

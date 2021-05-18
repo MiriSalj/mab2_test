@@ -1,0 +1,1036 @@
+-- ****************************************************************************
+--
+--  Trace file: acados_test.trc
+--
+--  RTI1401 7.10 (02-May-2018)
+--  Tue May 18 18:13:41 2021
+--
+--  Copyright 2021, dSPACE GmbH. All rights reserved.
+--
+-- ****************************************************************************
+--
+--  Used options:
+--    TRCGenerateVirtualBlocks      = 0
+--    TRCGenerateLabels             = 0
+--    TRCGenerateStates             = 0
+--    TRCGenerateDerivatives        = 0
+--    TRCGenerateParamValues        = 0
+--    TRCGenerateApplicationKeyword = 0
+--    TRCOnlyGlobals                = 0
+--    TRCIsOmitVdOn                 = 0
+--
+--  Trace file format: 3
+
+-- ******** Keywords **********************************************************
+-- _application "acados_test.map"
+
+_genname     "RTI"
+_genversion  "7.10"
+_gendate     "05/18/2021 18:13:43"
+_description ""
+_author      "RTI1401 7.10 (02-May-2018)"
+_model       "acados_test"
+
+-- Default data type formats
+_floating_point_type(64,IEEE)
+_integer_type(32)
+
+-- No Data Capture blocks within model: use base sample time as sampling period
+sampling_period[0]
+{
+  value:       0.4
+  alias:       "HostService"
+  increment:   0.4
+  unit:        "s"
+}
+
+
+
+
+-- Type definitions for arrays
+typedef acados_test_ArrayDT0_1_50_Col col flt(64,IEEE)[1][50]
+typedef acados_test_ArrayDT0_6 flt(64,IEEE)[6]
+typedef acados_test_ArrayDT0_300 flt(64,IEEE)[300]
+typedef acados_test_ArrayDT0_357 flt(64,IEEE)[357]
+typedef acados_test_ArrayDT0_7 flt(64,IEEE)[7]
+typedef acados_test_ArrayDT0_1_7_Col col flt(64,IEEE)[1][7]
+typedef acados_test_ArrayDT0_1_153_Col col flt(64,IEEE)[1][153]
+typedef acados_test_ArrayDT0_14 flt(64,IEEE)[14]
+typedef acados_test_ArrayDT0_686 flt(64,IEEE)[686]
+typedef acados_test_ArrayDT0_1_98_Col col flt(64,IEEE)[1][98]
+typedef acados_test_ArrayDT0_1_2_Col col flt(64,IEEE)[1][2]
+typedef acados_test_ArrayDT0_1_196_Col col flt(64,IEEE)[1][196]
+typedef acados_test_ArrayDT0_1_49_Col col flt(64,IEEE)[1][49]
+typedef acados_test_ArrayDT0_7_51_Col col flt(64,IEEE)[7][51]
+typedef acados_test_ArrayDT0_50 flt(64,IEEE)[50]
+typedef acados_test_ArrayDT0_2 flt(64,IEEE)[2]
+typedef acados_test_ArrayDT0_4 flt(64,IEEE)[4]
+
+
+-- ******** Simulation control variables **************************************
+
+finalTime
+{
+ type:  flt(64,IEEE)*
+ alias: "finalTime"
+ desc:  "Simulation stop time. When reached, simState switches to STOP."
+ flags:  READONLY
+ unit:  "s"
+ addr:    0x00755874
+}
+
+currentTime
+{
+ type:  flt(64,IEEE)*
+ alias: "currentTime"
+ desc:  "Current simulation time. Increments with execution of Timer Task 1."
+ flags: READONLY
+ unit:  "s"
+ addr:    0x00755870
+}
+
+modelStepSize
+{
+ type:  flt(64,IEEE)
+ alias: "modelStepSize"
+ desc:  "Fixed step size of the model, sample time of Timer Task 1."
+ flags: READONLY
+ unit:  "s"
+ addr:    0x00755878
+}
+
+simState
+{
+ type:  int(32)
+ alias: "simState"
+ desc:  "Simulation state: STOP=0 PAUSE=1 RUN=2"
+ unit:  "-"
+ addr:    0x00326f38
+}
+
+msg_last_error_no
+{
+ type:  uint(32)
+ alias: "errorNumber"
+ desc:  "Error number of last error message (zero if no error)."
+ unit:  "-"
+ flags: READONLY
+ addr:    0x0074539c
+}
+
+p_dsts_sum_of_reset_time
+{
+ type:  flt(64,IEEE)*
+ alias: "sumOfResetTime"
+ desc:  "Internal variable for summing up reset time."
+ unit:  "s"
+ flags: READONLY|HIDDEN
+ addr:    0x002e2310
+}
+
+
+-- ******** Task Information variables ****************************************
+group "Task Info"
+{
+ flags: COLLAPSED
+}
+  group "Timer Task 1"
+  {
+   flags: COLLAPSED
+  }
+
+  pRti_TIMERA_STime
+  {
+   type:  flt(64,IEEE)*
+   alias: "sampleTime"
+   flags: READONLY
+ addr:    0x00755880
+}
+  pRti_TIMERA_TTime
+  {
+   type:  flt(64,IEEE)*
+   alias: "turnaroundTime"
+   flags: READONLY
+ addr:    0x00755884
+}
+  pRti_TIMERA_TState
+  {
+   type:  int(32)*
+   alias: "state"
+   flags: READONLY
+ addr:    0x00755888
+}
+  pRti_TIMERA_OType
+  {
+   type:  int(32)*
+   alias: "overrunCheckType"
+   flags: READONLY
+ addr:    0x0075588c
+}
+  pRti_TIMERA_OMax
+  {
+   type:  int(32)*
+   alias: "overrunQueueMax"
+   flags: READONLY
+ addr:    0x00755890
+}
+  pRti_TIMERA_ORpt
+  {
+   type:  int(32)*
+   alias: "overrunQueueCount"
+   flags: READONLY
+ addr:    0x00755894
+}
+  pRti_TIMERA_OCnt
+  {
+   type:  int(32)*
+   alias: "overrunCount"
+   flags: READONLY
+ addr:    0x00755898
+}
+  pRti_TIMERA_TCnt
+  {
+   type:  flt(64,IEEE)*
+   alias: "taskCallCount"
+   flags: READONLY
+ addr:    0x0075589c
+}
+  pRti_TIMERA_Prio
+  {
+   type:  int(32)*
+   alias: "priority"
+   flags: READONLY
+ addr:    0x007558a0
+}
+  endgroup
+
+
+endgroup
+
+
+-- ******** Model variables ***************************************************
+
+group "Model Root"
+	group "Digital Clock" -- block-group
+	{
+	 block: "DigitalClock"
+	}
+		p_0_acados_test_real_T_0[350]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "Out1"
+		 flags:   OUTPUT|READONLY
+ addr:    0x00326f28
+}
+
+
+	endgroup -- block-group "Digital Clock"
+
+	group "Rate Transition" -- block-group
+	{
+	 block: "RateTransition"
+	}
+		p_0_acados_test_real_T_0[1125]
+		{
+		 type:    acados_test_ArrayDT0_1_50_Col*
+		 alias:   "Out1"
+		 flags:   OUTPUT|READONLY
+ addr:    0x00326f28
+}
+
+
+	endgroup -- block-group "Rate Transition"
+
+	group "Rate Transition1" -- block-group
+	{
+	 block: "RateTransition"
+	}
+		p_0_acados_test_real_T_0[401]
+		{
+		 type:    acados_test_ArrayDT0_1_50_Col*
+		 alias:   "Out1"
+		 flags:   OUTPUT|READONLY
+ addr:    0x00326f28
+}
+
+
+	endgroup -- block-group "Rate Transition1"
+
+	group "Rate Transition2" -- block-group
+	{
+	 block: "RateTransition"
+	}
+		p_0_acados_test_real_T_0[351]
+		{
+		 type:    acados_test_ArrayDT0_1_50_Col*
+		 alias:   "Out1"
+		 flags:   OUTPUT|READONLY
+ addr:    0x00326f28
+}
+
+
+	endgroup -- block-group "Rate Transition2"
+
+	group "Rate Transition3" -- block-group
+	{
+	 block: "RateTransition"
+	}
+		-- Skipping output
+
+
+	endgroup -- block-group "Rate Transition3"
+
+	group "Delay" -- block-group
+	{
+	 block: "Delay"
+	}
+		-- Skipping output
+
+
+	endgroup -- block-group "Delay"
+
+	group "Scope" -- block-group
+	{
+	 block: "Scope"
+	}
+
+
+
+	endgroup -- block-group "Scope"
+
+	group "Scope1" -- block-group
+	{
+	 block: "Scope"
+	}
+		p_0_acados_test_real_T_0[451]
+		{
+		 type:    acados_test_ArrayDT0_2*
+		 alias:   "In1"
+		 flags:   READONLY
+ addr:    0x00326f28
+}
+
+
+
+	endgroup -- block-group "Scope1"
+
+	group "Scope2" -- block-group
+	{
+	 block: "Scope"
+	}
+		p_0_acados_test_real_T_0[453]
+		{
+		 type:    acados_test_ArrayDT0_4*
+		 alias:   "In1"
+		 flags:   READONLY
+		 addr:    0x00326f28
+		}
+
+
+
+	endgroup -- block-group "Scope2"
+
+  
+  
+	group "MPC-Regler" -- subsystem-group
+
+		-- Skipping output
+		p_0_acados_test_real_T_0[451]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   " delta_front_[rad]"
+		 flags:   OUTPUT|READONLY
+ addr:    0x00326f28
+}
+		p_0_acados_test_real_T_0[452]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   " delta_rear_[rad]"
+		 flags:   OUTPUT|READONLY
+ addr:    0x00326f28
+}
+		p_0_acados_test_real_T_0[453]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "M_FL[Nm]"
+		 flags:   OUTPUT|READONLY
+ addr:    0x00326f28
+}
+		p_0_acados_test_real_T_0[454]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "M_FR[Nm]"
+		 flags:   OUTPUT|READONLY
+ addr:    0x00326f28
+}
+		p_0_acados_test_real_T_0[455]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "M_RL[Nm]"
+		 flags:   OUTPUT|READONLY
+ addr:    0x00326f28
+}
+		p_0_acados_test_real_T_0[456]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "M_RR[Nm]"
+		 flags:   OUTPUT|READONLY
+ addr:    0x00326f28
+}
+
+
+		group "CPU Time" -- block-group
+		{
+		 block: "Display"
+		}
+			p_0_acados_test_real_T_0[1123]
+			{
+			 type:    flt(64,IEEE)*
+			 alias:   "In1"
+			 flags:   READONLY
+ addr:    0x00326f28
+}
+
+
+
+		endgroup -- block-group "CPU Time"
+
+		group "KKT residual" -- block-group
+		{
+		 block: "Display"
+		}
+			p_0_acados_test_real_T_0[1115]
+			{
+			 type:    flt(64,IEEE)*
+			 alias:   "In1"
+			 flags:   READONLY
+ addr:    0x00326f28
+}
+
+
+
+		endgroup -- block-group "KKT residual"
+
+		group "solver_status (0 = SUCCESS)" -- block-group
+		{
+		 block: "Display"
+		}
+			p_0_acados_test_real_T_0[1114]
+			{
+			 type:    flt(64,IEEE)*
+			 alias:   "In1"
+			 flags:   READONLY
+ addr:    0x00326f28
+}
+
+
+
+		endgroup -- block-group "solver_status (0 = SUCCESS)"
+
+		group "sqp iter" -- block-group
+		{
+		 block: "Display"
+		}
+			p_0_acados_test_real_T_0[1124]
+			{
+			 type:    flt(64,IEEE)*
+			 alias:   "In1"
+			 flags:   READONLY
+ addr:    0x00326f28
+}
+
+
+
+		endgroup -- block-group "sqp iter"
+
+		group "S-Function" -- block-group
+		{
+		 block: "S-Function"
+		}
+			p_0_acados_test_real_T_0[451]
+			{
+			 type:    acados_test_ArrayDT0_6*
+			 alias:   "Out1"
+			 flags:   OUTPUT|READONLY
+ addr:    0x00326f28
+}
+			p_0_acados_test_real_T_0[457]
+			{
+			 type:    acados_test_ArrayDT0_300*
+			 alias:   "Out2"
+			 flags:   OUTPUT|READONLY
+ addr:    0x00326f28
+}
+			p_0_acados_test_real_T_0[757]
+			{
+			 type:    acados_test_ArrayDT0_357*
+			 alias:   "Out3"
+			 flags:   OUTPUT|READONLY
+ addr:    0x00326f28
+}
+			p_0_acados_test_real_T_0[1114]
+			{
+			 type:    flt(64,IEEE)*
+			 alias:   "Out4"
+			 flags:   OUTPUT|READONLY
+ addr:    0x00326f28
+}
+			p_0_acados_test_real_T_0[1115]
+			{
+			 type:    flt(64,IEEE)*
+			 alias:   "Out5"
+			 flags:   OUTPUT|READONLY
+ addr:    0x00326f28
+}
+			p_0_acados_test_real_T_0[1116]
+			{
+			 type:    acados_test_ArrayDT0_7*
+			 alias:   "Out6"
+			 flags:   OUTPUT|READONLY
+ addr:    0x00326f28
+}
+			p_0_acados_test_real_T_0[1123]
+			{
+			 type:    flt(64,IEEE)*
+			 alias:   "Out7"
+			 flags:   OUTPUT|READONLY
+ addr:    0x00326f28
+}
+			p_0_acados_test_real_T_0[1124]
+			{
+			 type:    flt(64,IEEE)*
+			 alias:   "Out8"
+			 flags:   OUTPUT|READONLY
+ addr:    0x00326f28
+}
+
+
+		endgroup -- block-group "S-Function"
+
+  
+  
+		group "Soll-Trajektorie" -- subsystem-group
+
+			p_0_acados_test_real_T_0[1289]
+			{
+			 type:    acados_test_ArrayDT0_1_7_Col*
+			 alias:   "lbx"
+			 flags:   OUTPUT|READONLY
+ addr:    0x00326f28
+}
+			p_0_acados_test_real_T_0[1296]
+			{
+			 type:    acados_test_ArrayDT0_1_7_Col*
+			 alias:   "ubx"
+			 flags:   OUTPUT|READONLY
+ addr:    0x00326f28
+}
+			p_0_acados_test_real_T_0[1303]
+			{
+			 type:    acados_test_ArrayDT0_1_153_Col*
+			 alias:   "param"
+			 flags:   OUTPUT|READONLY
+ addr:    0x00326f28
+}
+			p_0_acados_test_real_T_0[2056]
+			{
+			 type:    acados_test_ArrayDT0_14*
+			 alias:   "y_ref_0"
+			 flags:   OUTPUT|READONLY
+ addr:    0x00326f28
+}
+			p_0_acados_test_real_T_0[2070]
+			{
+			 type:    acados_test_ArrayDT0_686*
+			 alias:   "y_ref_con"
+			 flags:   OUTPUT|READONLY
+ addr:    0x00326f28
+}
+			p_0_acados_test_real_T_0[2756]
+			{
+			 type:    acados_test_ArrayDT0_7*
+			 alias:   "y_ref_e"
+			 flags:   OUTPUT|READONLY
+ addr:    0x00326f28
+}
+			p_0_acados_test_real_T_0[2763]
+			{
+			 type:    acados_test_ArrayDT0_1_98_Col*
+			 alias:   "lbx_Concatenated"
+			 flags:   OUTPUT|READONLY
+ addr:    0x00326f28
+}
+			p_0_acados_test_real_T_0[2861]
+			{
+			 type:    acados_test_ArrayDT0_1_98_Col*
+			 alias:   "ubx_Concatenated"
+			 flags:   OUTPUT|READONLY
+ addr:    0x00326f28
+}
+			p_0_acados_test_real_T_0[2959]
+			{
+			 type:    acados_test_ArrayDT0_1_2_Col*
+			 alias:   "lbx_e"
+			 flags:   OUTPUT|READONLY
+ addr:    0x00326f28
+}
+			p_0_acados_test_real_T_0[2961]
+			{
+			 type:    acados_test_ArrayDT0_1_2_Col*
+			 alias:   "ubx_e"
+			 flags:   OUTPUT|READONLY
+ addr:    0x00326f28
+}
+			p_0_acados_test_real_T_0[1456]
+			{
+			 type:    acados_test_ArrayDT0_300*
+			 alias:   "lbu_Concatenated"
+			 flags:   OUTPUT|READONLY
+ addr:    0x00326f28
+}
+			p_0_acados_test_real_T_0[1756]
+			{
+			 type:    acados_test_ArrayDT0_300*
+			 alias:   "ubu_Concatenated"
+			 flags:   OUTPUT|READONLY
+ addr:    0x00326f28
+}
+			p_0_acados_test_real_T_0[2963]
+			{
+			 type:    acados_test_ArrayDT0_1_196_Col*
+			 alias:   "W_0"
+			 flags:   OUTPUT|READONLY
+ addr:    0x00326f28
+}
+			p_0_acados_test_real_T_0[3159]
+			{
+			 type:    acados_test_ArrayDT0_1_196_Col*
+			 alias:   "W"
+			 flags:   OUTPUT|READONLY
+ addr:    0x00326f28
+}
+			p_0_acados_test_real_T_0[3355]
+			{
+			 type:    acados_test_ArrayDT0_1_49_Col*
+			 alias:   "W_e"
+			 flags:   OUTPUT|READONLY
+ addr:    0x00326f28
+}
+
+
+  
+  
+			group "Referenz-Trajektorie" -- subsystem-group
+
+				p_0_acados_test_real_T_0[1289]
+				{
+				 type:    acados_test_ArrayDT0_1_7_Col*
+				 alias:   "lbx0"
+				 flags:   OUTPUT|READONLY
+ addr:    0x00326f28
+}
+				p_0_acados_test_real_T_0[1296]
+				{
+				 type:    acados_test_ArrayDT0_1_7_Col*
+				 alias:   "ubx0"
+				 flags:   OUTPUT|READONLY
+ addr:    0x00326f28
+}
+				p_0_acados_test_real_T_0[1303]
+				{
+				 type:    acados_test_ArrayDT0_1_153_Col*
+				 alias:   "params_concatenated"
+				 flags:   OUTPUT|READONLY
+ addr:    0x00326f28
+}
+				p_0_acados_test_real_T_0[1456]
+				{
+				 type:    acados_test_ArrayDT0_300*
+				 alias:   "lbu_con"
+				 flags:   OUTPUT|READONLY
+ addr:    0x00326f28
+}
+				p_0_acados_test_real_T_0[1756]
+				{
+				 type:    acados_test_ArrayDT0_300*
+				 alias:   "ubu_con"
+				 flags:   OUTPUT|READONLY
+ addr:    0x00326f28
+}
+				p_0_acados_test_real_T_0[2056]
+				{
+				 type:    acados_test_ArrayDT0_14*
+				 alias:   "y_ref_0"
+				 flags:   OUTPUT|READONLY
+ addr:    0x00326f28
+}
+				p_0_acados_test_real_T_0[2070]
+				{
+				 type:    acados_test_ArrayDT0_686*
+				 alias:   "y_ref_con"
+				 flags:   OUTPUT|READONLY
+ addr:    0x00326f28
+}
+				p_0_acados_test_real_T_0[2756]
+				{
+				 type:    acados_test_ArrayDT0_7*
+				 alias:   "y_ref_e"
+				 flags:   OUTPUT|READONLY
+ addr:    0x00326f28
+}
+				p_0_acados_test_real_T_0[2763]
+				{
+				 type:    acados_test_ArrayDT0_1_98_Col*
+				 alias:   "lbx"
+				 flags:   OUTPUT|READONLY
+ addr:    0x00326f28
+}
+				p_0_acados_test_real_T_0[2861]
+				{
+				 type:    acados_test_ArrayDT0_1_98_Col*
+				 alias:   "ubx"
+				 flags:   OUTPUT|READONLY
+ addr:    0x00326f28
+}
+				p_0_acados_test_real_T_0[2959]
+				{
+				 type:    acados_test_ArrayDT0_1_2_Col*
+				 alias:   "lbx_e"
+				 flags:   OUTPUT|READONLY
+ addr:    0x00326f28
+}
+				p_0_acados_test_real_T_0[2961]
+				{
+				 type:    acados_test_ArrayDT0_1_2_Col*
+				 alias:   "ubx_e"
+				 flags:   OUTPUT|READONLY
+ addr:    0x00326f28
+}
+				p_0_acados_test_real_T_0[2963]
+				{
+				 type:    acados_test_ArrayDT0_1_196_Col*
+				 alias:   "cost_W_0"
+				 flags:   OUTPUT|READONLY
+ addr:    0x00326f28
+}
+				p_0_acados_test_real_T_0[3159]
+				{
+				 type:    acados_test_ArrayDT0_1_196_Col*
+				 alias:   "cost_W"
+				 flags:   OUTPUT|READONLY
+ addr:    0x00326f28
+}
+				p_0_acados_test_real_T_0[3355]
+				{
+				 type:    acados_test_ArrayDT0_1_49_Col*
+				 alias:   "cost_W_e"
+				 flags:   OUTPUT|READONLY
+ addr:    0x00326f28
+}
+
+
+
+
+			endgroup -- subsystem-group "Referenz-Trajektorie"
+
+
+		endgroup -- subsystem-group "Soll-Trajektorie"
+  
+  
+		group "MATLAB Function" -- subsystem-group
+
+			p_0_acados_test_real_T_0[3404]
+			{
+			 type:    acados_test_ArrayDT0_1_50_Col*
+			 alias:   "vy_pred"
+			 flags:   OUTPUT|READONLY
+ addr:    0x00326f28
+}
+			p_0_acados_test_real_T_0[3454]
+			{
+			 type:    acados_test_ArrayDT0_1_50_Col*
+			 alias:   "psidot_pred"
+			 flags:   OUTPUT|READONLY
+ addr:    0x00326f28
+}
+			p_0_acados_test_real_T_0[3504]
+			{
+			 type:    acados_test_ArrayDT0_1_50_Col*
+			 alias:   "psi_pred"
+			 flags:   OUTPUT|READONLY
+ addr:    0x00326f28
+}
+			p_0_acados_test_real_T_0[3554]
+			{
+			 type:    acados_test_ArrayDT0_1_50_Col*
+			 alias:   "x_pred"
+			 flags:   OUTPUT|READONLY
+ addr:    0x00326f28
+}
+			p_0_acados_test_real_T_0[3604]
+			{
+			 type:    acados_test_ArrayDT0_1_50_Col*
+			 alias:   "y_pred"
+			 flags:   OUTPUT|READONLY
+ addr:    0x00326f28
+}
+			p_0_acados_test_real_T_0[3654]
+			{
+			 type:    acados_test_ArrayDT0_1_50_Col*
+			 alias:   "phidot_pred"
+			 flags:   OUTPUT|READONLY
+ addr:    0x00326f28
+}
+			p_0_acados_test_real_T_0[3704]
+			{
+			 type:    acados_test_ArrayDT0_1_50_Col*
+			 alias:   "phi_pred"
+			 flags:   OUTPUT|READONLY
+ addr:    0x00326f28
+}
+			p_0_acados_test_real_T_0[3754]
+			{
+			 type:    acados_test_ArrayDT0_7_51_Col*
+			 alias:   "st_pred"
+			 flags:   OUTPUT|READONLY
+ addr:    0x00326f28
+}
+
+
+
+
+		endgroup -- subsystem-group "MATLAB Function"
+
+
+	endgroup -- subsystem-group "MPC-Regler"
+  
+  
+	group "RTI Data" -- subsystem-group
+
+
+	endgroup -- subsystem-group "RTI Data"
+  
+  
+	group "Subsystem" -- subsystem-group
+
+		-- Skipping output
+
+
+  
+  
+		group "MATLAB Function" -- subsystem-group
+
+			p_0_acados_test_real_T_0[1275]
+			{
+			 type:    flt(64,IEEE)*
+			 alias:   "vy"
+			 flags:   OUTPUT|READONLY
+ addr:    0x00326f28
+}
+			p_0_acados_test_real_T_0[1276]
+			{
+			 type:    flt(64,IEEE)*
+			 alias:   "psidot"
+			 flags:   OUTPUT|READONLY
+ addr:    0x00326f28
+}
+			p_0_acados_test_real_T_0[1277]
+			{
+			 type:    flt(64,IEEE)*
+			 alias:   "psi"
+			 flags:   OUTPUT|READONLY
+ addr:    0x00326f28
+}
+			p_0_acados_test_real_T_0[1278]
+			{
+			 type:    flt(64,IEEE)*
+			 alias:   "x"
+			 flags:   OUTPUT|READONLY
+ addr:    0x00326f28
+}
+			p_0_acados_test_real_T_0[1279]
+			{
+			 type:    flt(64,IEEE)*
+			 alias:   "y"
+			 flags:   OUTPUT|READONLY
+ addr:    0x00326f28
+}
+			p_0_acados_test_real_T_0[1280]
+			{
+			 type:    flt(64,IEEE)*
+			 alias:   "phidot"
+			 flags:   OUTPUT|READONLY
+ addr:    0x00326f28
+}
+			p_0_acados_test_real_T_0[1281]
+			{
+			 type:    flt(64,IEEE)*
+			 alias:   "phi"
+			 flags:   OUTPUT|READONLY
+ addr:    0x00326f28
+}
+
+
+
+
+		endgroup -- subsystem-group "MATLAB Function"
+
+
+	endgroup -- subsystem-group "Subsystem"
+  
+  
+	group "Subsystem1" -- subsystem-group
+
+		p_0_acados_test_real_T_0[150]
+		{
+		 type:    acados_test_ArrayDT0_1_50_Col*
+		 alias:   "x_pred\n"
+		 flags:   OUTPUT|READONLY
+ addr:    0x00326f28
+}
+		p_0_acados_test_real_T_0[1175]
+		{
+		 type:    acados_test_ArrayDT0_1_50_Col*
+		 alias:   "y_ref"
+		 flags:   OUTPUT|READONLY
+ addr:    0x00326f28
+}
+		p_0_acados_test_real_T_0[1225]
+		{
+		 type:    acados_test_ArrayDT0_1_50_Col*
+		 alias:   "psi_ref"
+		 flags:   OUTPUT|READONLY
+ addr:    0x00326f28
+}
+
+
+  
+  
+		group "MATLAB Function" -- subsystem-group
+
+			p_0_acados_test_real_T_0[1175]
+			{
+			 type:    acados_test_ArrayDT0_1_50_Col*
+			 alias:   "y_ref"
+			 flags:   OUTPUT|READONLY
+ addr:    0x00326f28
+}
+			p_0_acados_test_real_T_0[1225]
+			{
+			 type:    acados_test_ArrayDT0_1_50_Col*
+			 alias:   "psi_ref"
+			 flags:   OUTPUT|READONLY
+ addr:    0x00326f28
+}
+
+
+
+
+		endgroup -- subsystem-group "MATLAB Function"
+
+
+	endgroup -- subsystem-group "Subsystem1"
+
+
+
+endgroup -- "Model Root"
+-- ******** Tunable Parameters ************************************************
+
+group "Tunable Parameters"
+
+
+endgroup
+
+-- ******** State Machine Data ************************************************
+
+group "State Machine Data"
+
+
+endgroup
+
+
+-- ******** Labels ************************************************************
+
+-- Generation of labels turned off with TRCGenerateLabels option.
+
+-- ******** RTT Dynamic Variables *********************************************
+
+group "RTT Dynamic Variables"
+
+endgroup
+
+-- ******** User variables from model_usr.trc *********************************
+
+-- RTI_USR_TRC_BEGIN
+
+-- No user file acados_test_usr.trc found.
+
+-- RTI_USR_TRC_END
+
+-- ******** EESPort States Variables ******************************************
+group "XIL API"
+{ 
+  flags: COLLAPSED
+}
+
+  group "EESPort"
+  {  
+    flags: COLLAPSED
+  }
+
+    p_xilapi_eesport_activeerrorset_uint32_T
+    {
+      type:    uint(32)*
+      alias:   "Active ErrorSet"
+      desc:    "Index of active ErrorSet or 0 if no ErrorSet is active."
+      flags:   OUTPUT|READONLY
+      range:   < 0 ; 4294967295 >
+ addr:    0x0074b024
+}
+
+    p_xilapi_eesport_erroractivated_uint32_T
+    {
+      type:    uint(32)*
+      alias:   "Error Activated"
+      desc:    "0 - no error is activated on hardware, 1 - at least one error is activated on hardware."  
+      flags:   OUTPUT|READONLY
+      range:   < 0 ; 1 >
+ addr:    0x0074b028
+}
+
+    p_xilapi_eesport_errorswitching_uint32_T
+    {
+      type:    uint(32)*
+      alias:   "Error Switching"
+      desc:    "0 - no switching operation running on hardware, 1 -  switching operation running on hardware."
+      flags:   OUTPUT|READONLY
+      range:   < 0 ; 1 >
+ addr:    0x0074b02c
+}
+
+    xilapi_eesport_flags_uint32_T
+    {
+      type:    uint(32)
+      alias:   "Flags"
+      flags:   OUTPUT|READONLY
+      range:   < 0 ; 4294967295 >
+ addr:    0x0074b030
+}
+
+    xilapi_eesport_trigger_uint32_T
+    {
+      type:    uint(32)
+      alias:   "Trigger"
+      flags:   OUTPUT|READONLY
+      range:   < 0 ; 4294967295 >
+ addr:    0x0074b034
+}
+
+    endgroup -- "EESPort"
+
+endgroup -- "XILAPI"
+
+
+
+-- ******** [EOF] *************************************************************
+

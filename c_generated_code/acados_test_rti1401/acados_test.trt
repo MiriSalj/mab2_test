@@ -1,0 +1,903 @@
+-- ****************************************************************************
+--
+--  Trace file: acados_test.trc
+--
+--  RTI1401 7.10 (02-May-2018)
+--  Wed Apr 28 15:53:24 2021
+--
+--  Copyright 2021, dSPACE GmbH. All rights reserved.
+--
+-- ****************************************************************************
+--
+--  Used options:
+--    TRCGenerateVirtualBlocks      = 0
+--    TRCGenerateLabels             = 0
+--    TRCGenerateStates             = 0
+--    TRCGenerateDerivatives        = 0
+--    TRCGenerateParamValues        = 0
+--    TRCGenerateApplicationKeyword = 0
+--    TRCOnlyGlobals                = 0
+--    TRCIsOmitVdOn                 = 0
+--
+--  Trace file format: 3
+
+-- ******** Keywords **********************************************************
+-- _application "acados_test.map"
+
+_genname     "RTI"
+_genversion  "7.10"
+_gendate     "04/28/2021 15:53:27"
+_description ""
+_author      "RTI1401 7.10 (02-May-2018)"
+_model       "acados_test"
+
+-- Default data type formats
+_floating_point_type(64,IEEE)
+_integer_type(32)
+
+-- No Data Capture blocks within model: use base sample time as sampling period
+sampling_period[0]
+{
+  value:       0.1
+  alias:       "HostService"
+  increment:   0.1
+  unit:        "s"
+}
+
+
+
+
+-- Type definitions for arrays
+typedef acados_test_ArrayDT0_1_20_Col col flt(64,IEEE)[1][20]
+typedef acados_test_ArrayDT0_6 flt(64,IEEE)[6]
+typedef acados_test_ArrayDT0_120 flt(64,IEEE)[120]
+typedef acados_test_ArrayDT0_147 flt(64,IEEE)[147]
+typedef acados_test_ArrayDT0_7 flt(64,IEEE)[7]
+typedef acados_test_ArrayDT0_1_63_Col col flt(64,IEEE)[1][63]
+typedef acados_test_ArrayDT0_14 flt(64,IEEE)[14]
+typedef acados_test_ArrayDT0_266 flt(64,IEEE)[266]
+typedef acados_test_ArrayDT0_1_38_Col col flt(64,IEEE)[1][38]
+typedef acados_test_ArrayDT0_1_2_Col col flt(64,IEEE)[1][2]
+typedef acados_test_ArrayDT0_1_196_Col col flt(64,IEEE)[1][196]
+typedef acados_test_ArrayDT0_1_49_Col col flt(64,IEEE)[1][49]
+typedef acados_test_ArrayDT0_20 flt(64,IEEE)[20]
+
+
+-- ******** Simulation control variables **************************************
+
+finalTime
+{
+ type:  flt(64,IEEE)*
+ alias: "finalTime"
+ desc:  "Simulation stop time. When reached, simState switches to STOP."
+ flags:  READONLY
+ unit:  "s"
+}
+
+currentTime
+{
+ type:  flt(64,IEEE)*
+ alias: "currentTime"
+ desc:  "Current simulation time. Increments with execution of Timer Task 1."
+ flags: READONLY
+ unit:  "s"
+}
+
+modelStepSize
+{
+ type:  flt(64,IEEE)
+ alias: "modelStepSize"
+ desc:  "Fixed step size of the model, sample time of Timer Task 1."
+ flags: READONLY
+ unit:  "s"
+}
+
+simState
+{
+ type:  int(32)
+ alias: "simState"
+ desc:  "Simulation state: STOP=0 PAUSE=1 RUN=2"
+ unit:  "-"
+}
+
+msg_last_error_no
+{
+ type:  uint(32)
+ alias: "errorNumber"
+ desc:  "Error number of last error message (zero if no error)."
+ unit:  "-"
+ flags: READONLY
+}
+
+p_dsts_sum_of_reset_time
+{
+ type:  flt(64,IEEE)*
+ alias: "sumOfResetTime"
+ desc:  "Internal variable for summing up reset time."
+ unit:  "s"
+ flags: READONLY|HIDDEN
+}
+
+
+-- ******** Task Information variables ****************************************
+group "Task Info"
+{
+ flags: COLLAPSED
+}
+  group "Timer Task 1"
+  {
+   flags: COLLAPSED
+  }
+
+  pRti_TIMERA_STime
+  {
+   type:  flt(64,IEEE)*
+   alias: "sampleTime"
+   flags: READONLY
+  }
+  pRti_TIMERA_TTime
+  {
+   type:  flt(64,IEEE)*
+   alias: "turnaroundTime"
+   flags: READONLY
+  }
+  pRti_TIMERA_TState
+  {
+   type:  int(32)*
+   alias: "state"
+   flags: READONLY
+  }
+  pRti_TIMERA_OType
+  {
+   type:  int(32)*
+   alias: "overrunCheckType"
+   flags: READONLY
+  }
+  pRti_TIMERA_OMax
+  {
+   type:  int(32)*
+   alias: "overrunQueueMax"
+   flags: READONLY
+  }
+  pRti_TIMERA_ORpt
+  {
+   type:  int(32)*
+   alias: "overrunQueueCount"
+   flags: READONLY
+  }
+  pRti_TIMERA_OCnt
+  {
+   type:  int(32)*
+   alias: "overrunCount"
+   flags: READONLY
+  }
+  pRti_TIMERA_TCnt
+  {
+   type:  flt(64,IEEE)*
+   alias: "taskCallCount"
+   flags: READONLY
+  }
+  pRti_TIMERA_Prio
+  {
+   type:  int(32)*
+   alias: "priority"
+   flags: READONLY
+  }
+  endgroup
+
+
+endgroup
+
+
+-- ******** Model variables ***************************************************
+
+group "Model Root"
+	group "Data Store\nMemory" -- block-group
+	{
+	 block: "DataStoreMemory"
+	}
+
+		p_1_acados_test_real_T_0[11]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "InitialValue"
+		 flags:   PARAM
+		}
+
+
+	endgroup -- block-group "Data Store\nMemory"
+
+	group "Memory" -- block-group
+	{
+	 block: "Memory"
+	}
+		-- Skipping output
+
+
+	endgroup -- block-group "Memory"
+
+  
+  
+	group "MPC-Regler" -- subsystem-group
+
+		-- Skipping output
+		p_0_acados_test_real_T_0[187]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   " delta_front_[rad]"
+		 flags:   OUTPUT|READONLY
+		}
+		p_0_acados_test_real_T_0[188]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   " delta_rear_[rad]"
+		 flags:   OUTPUT|READONLY
+		}
+		p_0_acados_test_real_T_0[189]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "M_FL[Nm]"
+		 flags:   OUTPUT|READONLY
+		}
+		p_0_acados_test_real_T_0[190]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "M_FR[Nm]"
+		 flags:   OUTPUT|READONLY
+		}
+		p_0_acados_test_real_T_0[191]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "M_RL[Nm]"
+		 flags:   OUTPUT|READONLY
+		}
+		p_0_acados_test_real_T_0[192]
+		{
+		 type:    flt(64,IEEE)*
+		 alias:   "M_RR[Nm]"
+		 flags:   OUTPUT|READONLY
+		}
+
+
+		group "Data Store\nMemory" -- block-group
+		{
+		 block: "DataStoreMemory"
+		}
+
+			p_1_acados_test_real_T_0[1]
+			{
+			 type:    flt(64,IEEE)*
+			 alias:   "InitialValue"
+			 flags:   PARAM
+			}
+
+
+		endgroup -- block-group "Data Store\nMemory"
+
+		group "CPU Time" -- block-group
+		{
+		 block: "Display"
+		}
+			p_0_acados_test_real_T_0[469]
+			{
+			 type:    flt(64,IEEE)*
+			 alias:   "In1"
+			 flags:   READONLY
+			}
+
+
+
+		endgroup -- block-group "CPU Time"
+
+		group "KKT residual" -- block-group
+		{
+		 block: "Display"
+		}
+			p_0_acados_test_real_T_0[461]
+			{
+			 type:    flt(64,IEEE)*
+			 alias:   "In1"
+			 flags:   READONLY
+			}
+
+
+
+		endgroup -- block-group "KKT residual"
+
+		group "solver_status (0 = SUCCESS)" -- block-group
+		{
+		 block: "Display"
+		}
+			p_0_acados_test_real_T_0[460]
+			{
+			 type:    flt(64,IEEE)*
+			 alias:   "In1"
+			 flags:   READONLY
+			}
+
+
+
+		endgroup -- block-group "solver_status (0 = SUCCESS)"
+
+		group "sqp iter" -- block-group
+		{
+		 block: "Display"
+		}
+			p_0_acados_test_real_T_0[470]
+			{
+			 type:    flt(64,IEEE)*
+			 alias:   "In1"
+			 flags:   READONLY
+			}
+
+
+
+		endgroup -- block-group "sqp iter"
+
+		group "S-Function" -- block-group
+		{
+		 block: "S-Function"
+		}
+			p_0_acados_test_real_T_0[187]
+			{
+			 type:    acados_test_ArrayDT0_6*
+			 alias:   "Out1"
+			 flags:   OUTPUT|READONLY
+			}
+			p_0_acados_test_real_T_0[193]
+			{
+			 type:    acados_test_ArrayDT0_120*
+			 alias:   "Out2"
+			 flags:   OUTPUT|READONLY
+			}
+			p_0_acados_test_real_T_0[313]
+			{
+			 type:    acados_test_ArrayDT0_147*
+			 alias:   "Out3"
+			 flags:   OUTPUT|READONLY
+			}
+			p_0_acados_test_real_T_0[460]
+			{
+			 type:    flt(64,IEEE)*
+			 alias:   "Out4"
+			 flags:   OUTPUT|READONLY
+			}
+			p_0_acados_test_real_T_0[461]
+			{
+			 type:    flt(64,IEEE)*
+			 alias:   "Out5"
+			 flags:   OUTPUT|READONLY
+			}
+			p_0_acados_test_real_T_0[462]
+			{
+			 type:    acados_test_ArrayDT0_7*
+			 alias:   "Out6"
+			 flags:   OUTPUT|READONLY
+			}
+			p_0_acados_test_real_T_0[469]
+			{
+			 type:    flt(64,IEEE)*
+			 alias:   "Out7"
+			 flags:   OUTPUT|READONLY
+			}
+			p_0_acados_test_real_T_0[470]
+			{
+			 type:    flt(64,IEEE)*
+			 alias:   "Out8"
+			 flags:   OUTPUT|READONLY
+			}
+
+
+		endgroup -- block-group "S-Function"
+
+  
+  
+		group "Soll-Trajektorie" -- subsystem-group
+
+			p_0_acados_test_real_T_0[478]
+			{
+			 type:    acados_test_ArrayDT0_7*
+			 alias:   "lbx"
+			 flags:   OUTPUT|READONLY
+			}
+			p_0_acados_test_real_T_0[485]
+			{
+			 type:    acados_test_ArrayDT0_7*
+			 alias:   "ubx"
+			 flags:   OUTPUT|READONLY
+			}
+			p_0_acados_test_real_T_0[492]
+			{
+			 type:    acados_test_ArrayDT0_1_63_Col*
+			 alias:   "param"
+			 flags:   OUTPUT|READONLY
+			}
+			p_0_acados_test_real_T_0[795]
+			{
+			 type:    acados_test_ArrayDT0_14*
+			 alias:   "y_ref_0"
+			 flags:   OUTPUT|READONLY
+			}
+			p_0_acados_test_real_T_0[809]
+			{
+			 type:    acados_test_ArrayDT0_266*
+			 alias:   "y_ref_con"
+			 flags:   OUTPUT|READONLY
+			}
+			p_0_acados_test_real_T_0[1075]
+			{
+			 type:    acados_test_ArrayDT0_7*
+			 alias:   "y_ref_e"
+			 flags:   OUTPUT|READONLY
+			}
+			p_0_acados_test_real_T_0[1082]
+			{
+			 type:    acados_test_ArrayDT0_1_38_Col*
+			 alias:   "lbx_Concatenated"
+			 flags:   OUTPUT|READONLY
+			}
+			p_0_acados_test_real_T_0[1120]
+			{
+			 type:    acados_test_ArrayDT0_1_38_Col*
+			 alias:   "ubx_Concatenated"
+			 flags:   OUTPUT|READONLY
+			}
+			p_0_acados_test_real_T_0[1158]
+			{
+			 type:    acados_test_ArrayDT0_1_2_Col*
+			 alias:   "lbx_e"
+			 flags:   OUTPUT|READONLY
+			}
+			p_0_acados_test_real_T_0[1160]
+			{
+			 type:    acados_test_ArrayDT0_1_2_Col*
+			 alias:   "ubx_e"
+			 flags:   OUTPUT|READONLY
+			}
+			p_0_acados_test_real_T_0[555]
+			{
+			 type:    acados_test_ArrayDT0_120*
+			 alias:   "lbu_Concatenated"
+			 flags:   OUTPUT|READONLY
+			}
+			p_0_acados_test_real_T_0[675]
+			{
+			 type:    acados_test_ArrayDT0_120*
+			 alias:   "ubu_Concatenated"
+			 flags:   OUTPUT|READONLY
+			}
+			p_0_acados_test_real_T_0[1162]
+			{
+			 type:    acados_test_ArrayDT0_1_196_Col*
+			 alias:   "W_0"
+			 flags:   OUTPUT|READONLY
+			}
+			p_0_acados_test_real_T_0[1358]
+			{
+			 type:    acados_test_ArrayDT0_1_196_Col*
+			 alias:   "W"
+			 flags:   OUTPUT|READONLY
+			}
+			p_0_acados_test_real_T_0[1554]
+			{
+			 type:    acados_test_ArrayDT0_1_49_Col*
+			 alias:   "W_e"
+			 flags:   OUTPUT|READONLY
+			}
+
+
+			group "Data Store\nMemory" -- block-group
+			{
+			 block: "DataStoreMemory"
+			}
+
+				p_1_acados_test_real_T_0[0]
+				{
+				 type:    flt(64,IEEE)*
+				 alias:   "InitialValue"
+				 flags:   PARAM
+				}
+
+
+			endgroup -- block-group "Data Store\nMemory"
+
+  
+  
+			group "Referenz-Trajektorie" -- subsystem-group
+
+				p_0_acados_test_real_T_0[478]
+				{
+				 type:    acados_test_ArrayDT0_7*
+				 alias:   "lbx0"
+				 flags:   OUTPUT|READONLY
+				}
+				p_0_acados_test_real_T_0[485]
+				{
+				 type:    acados_test_ArrayDT0_7*
+				 alias:   "ubx0"
+				 flags:   OUTPUT|READONLY
+				}
+				p_0_acados_test_real_T_0[492]
+				{
+				 type:    acados_test_ArrayDT0_1_63_Col*
+				 alias:   "params_concatenated"
+				 flags:   OUTPUT|READONLY
+				}
+				p_0_acados_test_real_T_0[555]
+				{
+				 type:    acados_test_ArrayDT0_120*
+				 alias:   "lbu_con"
+				 flags:   OUTPUT|READONLY
+				}
+				p_0_acados_test_real_T_0[675]
+				{
+				 type:    acados_test_ArrayDT0_120*
+				 alias:   "ubu_con"
+				 flags:   OUTPUT|READONLY
+				}
+				p_0_acados_test_real_T_0[795]
+				{
+				 type:    acados_test_ArrayDT0_14*
+				 alias:   "y_ref_0"
+				 flags:   OUTPUT|READONLY
+				}
+				p_0_acados_test_real_T_0[809]
+				{
+				 type:    acados_test_ArrayDT0_266*
+				 alias:   "y_ref_con"
+				 flags:   OUTPUT|READONLY
+				}
+				p_0_acados_test_real_T_0[1075]
+				{
+				 type:    acados_test_ArrayDT0_7*
+				 alias:   "y_ref_e"
+				 flags:   OUTPUT|READONLY
+				}
+				p_0_acados_test_real_T_0[1082]
+				{
+				 type:    acados_test_ArrayDT0_1_38_Col*
+				 alias:   "lbx"
+				 flags:   OUTPUT|READONLY
+				}
+				p_0_acados_test_real_T_0[1120]
+				{
+				 type:    acados_test_ArrayDT0_1_38_Col*
+				 alias:   "ubx"
+				 flags:   OUTPUT|READONLY
+				}
+				p_0_acados_test_real_T_0[1158]
+				{
+				 type:    acados_test_ArrayDT0_1_2_Col*
+				 alias:   "lbx_e"
+				 flags:   OUTPUT|READONLY
+				}
+				p_0_acados_test_real_T_0[1160]
+				{
+				 type:    acados_test_ArrayDT0_1_2_Col*
+				 alias:   "ubx_e"
+				 flags:   OUTPUT|READONLY
+				}
+				p_0_acados_test_real_T_0[1162]
+				{
+				 type:    acados_test_ArrayDT0_1_196_Col*
+				 alias:   "cost_W_0"
+				 flags:   OUTPUT|READONLY
+				}
+				p_0_acados_test_real_T_0[1358]
+				{
+				 type:    acados_test_ArrayDT0_1_196_Col*
+				 alias:   "cost_W"
+				 flags:   OUTPUT|READONLY
+				}
+				p_0_acados_test_real_T_0[1554]
+				{
+				 type:    acados_test_ArrayDT0_1_49_Col*
+				 alias:   "cost_W_e"
+				 flags:   OUTPUT|READONLY
+				}
+
+
+
+
+			endgroup -- subsystem-group "Referenz-Trajektorie"
+
+
+		endgroup -- subsystem-group "Soll-Trajektorie"
+  
+  
+		group "MATLAB Function" -- subsystem-group
+
+			p_0_acados_test_real_T_0[1603]
+			{
+			 type:    acados_test_ArrayDT0_1_20_Col*
+			 alias:   "vy_pred"
+			 flags:   OUTPUT|READONLY
+			}
+			p_0_acados_test_real_T_0[1623]
+			{
+			 type:    acados_test_ArrayDT0_1_20_Col*
+			 alias:   "psidot_pred"
+			 flags:   OUTPUT|READONLY
+			}
+			p_0_acados_test_real_T_0[1643]
+			{
+			 type:    acados_test_ArrayDT0_1_20_Col*
+			 alias:   "psi_pred"
+			 flags:   OUTPUT|READONLY
+			}
+			p_0_acados_test_real_T_0[1663]
+			{
+			 type:    acados_test_ArrayDT0_1_20_Col*
+			 alias:   "x_pred"
+			 flags:   OUTPUT|READONLY
+			}
+			p_0_acados_test_real_T_0[1683]
+			{
+			 type:    acados_test_ArrayDT0_1_20_Col*
+			 alias:   "y_pred"
+			 flags:   OUTPUT|READONLY
+			}
+			p_0_acados_test_real_T_0[1703]
+			{
+			 type:    acados_test_ArrayDT0_1_20_Col*
+			 alias:   "phidot_pred"
+			 flags:   OUTPUT|READONLY
+			}
+			p_0_acados_test_real_T_0[1723]
+			{
+			 type:    acados_test_ArrayDT0_1_20_Col*
+			 alias:   "phi_pred"
+			 flags:   OUTPUT|READONLY
+			}
+
+
+
+
+		endgroup -- subsystem-group "MATLAB Function"
+
+
+	endgroup -- subsystem-group "MPC-Regler"
+  
+  
+	group "RTI Data" -- subsystem-group
+
+
+	endgroup -- subsystem-group "RTI Data"
+  
+  
+	group "Subsystem" -- subsystem-group
+
+		-- Skipping output
+
+
+		group "Data Store\nMemory" -- block-group
+		{
+		 block: "DataStoreMemory"
+		}
+
+			p_1_acados_test_real_T_0[2]
+			{
+			 type:    flt(64,IEEE)*
+			 alias:   "InitialValue"
+			 flags:   PARAM
+			}
+
+
+		endgroup -- block-group "Data Store\nMemory"
+
+  
+  
+		group "MATLAB Function" -- subsystem-group
+
+			p_0_acados_test_real_T_0[180]
+			{
+			 type:    flt(64,IEEE)*
+			 alias:   "vy"
+			 flags:   OUTPUT|READONLY
+			}
+			p_0_acados_test_real_T_0[181]
+			{
+			 type:    flt(64,IEEE)*
+			 alias:   "psidot"
+			 flags:   OUTPUT|READONLY
+			}
+			p_0_acados_test_real_T_0[182]
+			{
+			 type:    flt(64,IEEE)*
+			 alias:   "psi"
+			 flags:   OUTPUT|READONLY
+			}
+			p_0_acados_test_real_T_0[183]
+			{
+			 type:    flt(64,IEEE)*
+			 alias:   "x"
+			 flags:   OUTPUT|READONLY
+			}
+			p_0_acados_test_real_T_0[184]
+			{
+			 type:    flt(64,IEEE)*
+			 alias:   "y"
+			 flags:   OUTPUT|READONLY
+			}
+			p_0_acados_test_real_T_0[185]
+			{
+			 type:    flt(64,IEEE)*
+			 alias:   "phidot"
+			 flags:   OUTPUT|READONLY
+			}
+			p_0_acados_test_real_T_0[186]
+			{
+			 type:    flt(64,IEEE)*
+			 alias:   "phi"
+			 flags:   OUTPUT|READONLY
+			}
+
+
+
+
+		endgroup -- subsystem-group "MATLAB Function"
+
+
+	endgroup -- subsystem-group "Subsystem"
+  
+  
+	group "Subsystem1" -- subsystem-group
+
+		p_0_acados_test_real_T_0[0]
+		{
+		 type:    acados_test_ArrayDT0_1_20_Col*
+		 alias:   "x_pred\n"
+		 flags:   OUTPUT|READONLY
+		}
+		p_0_acados_test_real_T_0[140]
+		{
+		 type:    acados_test_ArrayDT0_1_20_Col*
+		 alias:   "y_ref"
+		 flags:   OUTPUT|READONLY
+		}
+		p_0_acados_test_real_T_0[160]
+		{
+		 type:    acados_test_ArrayDT0_1_20_Col*
+		 alias:   "psi_ref"
+		 flags:   OUTPUT|READONLY
+		}
+
+
+		group "Data Store\nMemory" -- block-group
+		{
+		 block: "DataStoreMemory"
+		}
+
+			p_1_acados_test_real_T_0[10]
+			{
+			 type:    flt(64,IEEE)*
+			 alias:   "InitialValue"
+			 flags:   PARAM
+			}
+
+
+		endgroup -- block-group "Data Store\nMemory"
+
+  
+  
+		group "MATLAB Function" -- subsystem-group
+
+			p_0_acados_test_real_T_0[140]
+			{
+			 type:    acados_test_ArrayDT0_1_20_Col*
+			 alias:   "y_ref"
+			 flags:   OUTPUT|READONLY
+			}
+			p_0_acados_test_real_T_0[160]
+			{
+			 type:    acados_test_ArrayDT0_1_20_Col*
+			 alias:   "psi_ref"
+			 flags:   OUTPUT|READONLY
+			}
+
+
+
+
+		endgroup -- subsystem-group "MATLAB Function"
+
+
+	endgroup -- subsystem-group "Subsystem1"
+
+
+
+endgroup -- "Model Root"
+-- ******** Tunable Parameters ************************************************
+
+group "Tunable Parameters"
+
+
+endgroup
+
+-- ******** State Machine Data ************************************************
+
+group "State Machine Data"
+
+
+endgroup
+
+
+-- ******** Labels ************************************************************
+
+-- Generation of labels turned off with TRCGenerateLabels option.
+
+-- ******** RTT Dynamic Variables *********************************************
+
+group "RTT Dynamic Variables"
+
+endgroup
+
+-- ******** User variables from model_usr.trc *********************************
+
+-- RTI_USR_TRC_BEGIN
+
+-- No user file acados_test_usr.trc found.
+
+-- RTI_USR_TRC_END
+
+-- ******** EESPort States Variables ******************************************
+group "XIL API"
+{ 
+  flags: COLLAPSED
+}
+
+  group "EESPort"
+  {  
+    flags: COLLAPSED
+  }
+
+    p_xilapi_eesport_activeerrorset_uint32_T
+    {
+      type:    uint(32)*
+      alias:   "Active ErrorSet"
+      desc:    "Index of active ErrorSet or 0 if no ErrorSet is active."
+      flags:   OUTPUT|READONLY
+      range:   < 0 ; 4294967295 >
+    }
+
+    p_xilapi_eesport_erroractivated_uint32_T
+    {
+      type:    uint(32)*
+      alias:   "Error Activated"
+      desc:    "0 - no error is activated on hardware, 1 - at least one error is activated on hardware."  
+      flags:   OUTPUT|READONLY
+      range:   < 0 ; 1 >
+    }
+
+    p_xilapi_eesport_errorswitching_uint32_T
+    {
+      type:    uint(32)*
+      alias:   "Error Switching"
+      desc:    "0 - no switching operation running on hardware, 1 -  switching operation running on hardware."
+      flags:   OUTPUT|READONLY
+      range:   < 0 ; 1 >
+    }
+
+    xilapi_eesport_flags_uint32_T
+    {
+      type:    uint(32)
+      alias:   "Flags"
+      flags:   OUTPUT|READONLY
+      range:   < 0 ; 4294967295 >
+    }
+
+    xilapi_eesport_trigger_uint32_T
+    {
+      type:    uint(32)
+      alias:   "Trigger"
+      flags:   OUTPUT|READONLY
+      range:   < 0 ; 4294967295 >
+    }
+
+    endgroup -- "EESPort"
+
+endgroup -- "XILAPI"
+
+
+
+-- ******** [EOF] *************************************************************
+

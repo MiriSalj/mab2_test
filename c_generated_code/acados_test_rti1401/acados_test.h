@@ -1,0 +1,393 @@
+/*
+ * acados_test.h
+ *
+ * Academic License - for use in teaching, academic research, and meeting
+ * course requirements at degree granting institutions only.  Not for
+ * government, commercial, or other organizational use.
+ *
+ * Code generation for model "acados_test".
+ *
+ * Model version              : 1.130
+ * Simulink Coder version : 8.13 (R2017b) 24-Jul-2017
+ * C source code generated on : Wed Apr 28 15:53:24 2021
+ *
+ * Target selection: rti1401.tlc
+ * Note: GRT includes extra infrastructure and instrumentation for prototyping
+ * Embedded hardware selection: Custom Processor->Custom
+ * Code generation objectives: Unspecified
+ * Validation result: Not run
+ */
+
+#ifndef RTW_HEADER_acados_test_h_
+#define RTW_HEADER_acados_test_h_
+#include <stddef.h>
+#include <string.h>
+#include <math.h>
+#ifndef acados_test_COMMON_INCLUDES_
+# define acados_test_COMMON_INCLUDES_
+#include <brtenv.h>
+#include <rtkernel.h>
+#include <rti_assert.h>
+#include "rtwtypes.h"
+#include "simstruc.h"
+#include "fixedpoint.h"
+#endif                                 /* acados_test_COMMON_INCLUDES_ */
+
+#include "acados_test_types.h"
+
+/* Shared type includes */
+#include "multiword_types.h"
+#include "rt_nonfinite.h"
+
+/* Macros for accessing real-time model data structure */
+#ifndef rtmGetContTimeOutputInconsistentWithStateAtMajorStepFlag
+# define rtmGetContTimeOutputInconsistentWithStateAtMajorStepFlag(rtm) ((rtm)->CTOutputIncnstWithState)
+#endif
+
+#ifndef rtmSetContTimeOutputInconsistentWithStateAtMajorStepFlag
+# define rtmSetContTimeOutputInconsistentWithStateAtMajorStepFlag(rtm, val) ((rtm)->CTOutputIncnstWithState = (val))
+#endif
+
+#ifndef rtmGetDerivCacheNeedsReset
+# define rtmGetDerivCacheNeedsReset(rtm) ((rtm)->derivCacheNeedsReset)
+#endif
+
+#ifndef rtmSetDerivCacheNeedsReset
+# define rtmSetDerivCacheNeedsReset(rtm, val) ((rtm)->derivCacheNeedsReset = (val))
+#endif
+
+#ifndef rtmGetFinalTime
+# define rtmGetFinalTime(rtm)          ((rtm)->Timing.tFinal)
+#endif
+
+#ifndef rtmGetSampleHitArray
+# define rtmGetSampleHitArray(rtm)     ((rtm)->Timing.sampleHitArray)
+#endif
+
+#ifndef rtmGetStepSize
+# define rtmGetStepSize(rtm)           ((rtm)->Timing.stepSize)
+#endif
+
+#ifndef rtmGetZCCacheNeedsReset
+# define rtmGetZCCacheNeedsReset(rtm)  ((rtm)->zCCacheNeedsReset)
+#endif
+
+#ifndef rtmSetZCCacheNeedsReset
+# define rtmSetZCCacheNeedsReset(rtm, val) ((rtm)->zCCacheNeedsReset = (val))
+#endif
+
+#ifndef rtmGet_TimeOfLastOutput
+# define rtmGet_TimeOfLastOutput(rtm)  ((rtm)->Timing.timeOfLastOutput)
+#endif
+
+#ifndef rtmGetErrorStatus
+# define rtmGetErrorStatus(rtm)        ((rtm)->errorStatus)
+#endif
+
+#ifndef rtmSetErrorStatus
+# define rtmSetErrorStatus(rtm, val)   ((rtm)->errorStatus = (val))
+#endif
+
+#ifndef rtmGetStopRequested
+# define rtmGetStopRequested(rtm)      ((rtm)->Timing.stopRequestedFlag)
+#endif
+
+#ifndef rtmSetStopRequested
+# define rtmSetStopRequested(rtm, val) ((rtm)->Timing.stopRequestedFlag = (val))
+#endif
+
+#ifndef rtmGetStopRequestedPtr
+# define rtmGetStopRequestedPtr(rtm)   (&((rtm)->Timing.stopRequestedFlag))
+#endif
+
+#ifndef rtmGetT
+# define rtmGetT(rtm)                  (rtmGetTPtr((rtm))[0])
+#endif
+
+#ifndef rtmGetTFinal
+# define rtmGetTFinal(rtm)             ((rtm)->Timing.tFinal)
+#endif
+
+#ifndef rtmGetTStart
+# define rtmGetTStart(rtm)             ((rtm)->Timing.tStart)
+#endif
+
+#ifndef rtmGetTimeOfLastOutput
+# define rtmGetTimeOfLastOutput(rtm)   ((rtm)->Timing.timeOfLastOutput)
+#endif
+
+/* Block signals (auto storage) */
+typedef struct {
+  real_T y_ref_mat[266];
+  real_T x_pred[20];                   /* '<Root>/Memory' */
+  real_T vy_pred[20];                  /* '<Root>/Memory' */
+  real_T psidot_pred[20];              /* '<Root>/Memory' */
+  real_T psi_pred[20];                 /* '<Root>/Memory' */
+  real_T y_pred[20];                   /* '<Root>/Memory' */
+  real_T phidot_pred[20];              /* '<Root>/Memory' */
+  real_T phi_pred[20];                 /* '<Root>/Memory' */
+  real_T y_ref[20];                    /* '<S4>/MATLAB Function' */
+  real_T psi_ref[20];                  /* '<S4>/MATLAB Function' */
+  real_T vy;                           /* '<S3>/MATLAB Function' */
+  real_T psidot;                       /* '<S3>/MATLAB Function' */
+  real_T psi;                          /* '<S3>/MATLAB Function' */
+  real_T x;                            /* '<S3>/MATLAB Function' */
+  real_T y;                            /* '<S3>/MATLAB Function' */
+  real_T phidot;                       /* '<S3>/MATLAB Function' */
+  real_T phi;                          /* '<S3>/MATLAB Function' */
+  real_T u0[6];                        /* '<S1>/S-Function' */
+  real_T utraj[120];                   /* '<S1>/S-Function' */
+  real_T xtraj[147];                   /* '<S1>/S-Function' */
+  real_T SFunction_o4;                 /* '<S1>/S-Function' */
+  real_T SFunction_o5;                 /* '<S1>/S-Function' */
+  real_T x1[7];                        /* '<S1>/S-Function' */
+  real_T SFunction_o7;                 /* '<S1>/S-Function' */
+  real_T SFunction_o8;                 /* '<S1>/S-Function' */
+  real_T TmpSignalConversionAtSFunctionI[7];/* '<S7>/Referenz-Trajektorie' */
+  real_T lbx0[7];                      /* '<S7>/Referenz-Trajektorie' */
+  real_T ubx0[7];                      /* '<S7>/Referenz-Trajektorie' */
+  real_T params_concatenated[63];      /* '<S7>/Referenz-Trajektorie' */
+  real_T lbu_con[120];                 /* '<S7>/Referenz-Trajektorie' */
+  real_T ubu_con[120];                 /* '<S7>/Referenz-Trajektorie' */
+  real_T y_ref_0[14];                  /* '<S7>/Referenz-Trajektorie' */
+  real_T y_ref_con[266];               /* '<S7>/Referenz-Trajektorie' */
+  real_T y_ref_e[7];                   /* '<S7>/Referenz-Trajektorie' */
+  real_T lbx[38];                      /* '<S7>/Referenz-Trajektorie' */
+  real_T ubx[38];                      /* '<S7>/Referenz-Trajektorie' */
+  real_T lbx_e[2];                     /* '<S7>/Referenz-Trajektorie' */
+  real_T ubx_e[2];                     /* '<S7>/Referenz-Trajektorie' */
+  real_T cost_W_0[196];                /* '<S7>/Referenz-Trajektorie' */
+  real_T cost_W[196];                  /* '<S7>/Referenz-Trajektorie' */
+  real_T cost_W_e[49];                 /* '<S7>/Referenz-Trajektorie' */
+  real_T vy_pred_j[20];                /* '<S1>/MATLAB Function' */
+  real_T psidot_pred_f[20];            /* '<S1>/MATLAB Function' */
+  real_T psi_pred_a[20];               /* '<S1>/MATLAB Function' */
+  real_T x_pred_i[20];                 /* '<S1>/MATLAB Function' */
+  real_T y_pred_g[20];                 /* '<S1>/MATLAB Function' */
+  real_T phidot_pred_e[20];            /* '<S1>/MATLAB Function' */
+  real_T phi_pred_p[20];               /* '<S1>/MATLAB Function' */
+} B_acados_test_T;
+
+/* Block states (auto storage) for system '<Root>' */
+typedef struct {
+  real_T Memory_4_PreviousInput[20];   /* '<Root>/Memory' */
+  real_T Memory_1_PreviousInput[20];   /* '<Root>/Memory' */
+  real_T Memory_2_PreviousInput[20];   /* '<Root>/Memory' */
+  real_T Memory_3_PreviousInput[20];   /* '<Root>/Memory' */
+  real_T Memory_5_PreviousInput[20];   /* '<Root>/Memory' */
+  real_T Memory_6_PreviousInput[20];   /* '<Root>/Memory' */
+  real_T Memory_7_PreviousInput[20];   /* '<Root>/Memory' */
+} DW_acados_test_T;
+
+/* Parameters (auto storage) */
+struct P_acados_test_T_ {
+  real_T DataStoreMemory_InitialValue; /* Expression: 0
+                                        * Referenced by: '<S7>/Data Store Memory'
+                                        */
+  real_T DataStoreMemory_InitialValue_b;/* Expression: 0
+                                         * Referenced by: '<S1>/Data Store Memory'
+                                         */
+  real_T DataStoreMemory_InitialValue_p;/* Expression: 0
+                                         * Referenced by: '<S3>/Data Store Memory'
+                                         */
+  real_T Memory_4_InitialCondition;    /* Expression: 0
+                                        * Referenced by: '<Root>/Memory'
+                                        */
+  real_T Memory_1_InitialCondition;    /* Expression: 0
+                                        * Referenced by: '<Root>/Memory'
+                                        */
+  real_T Memory_2_InitialCondition;    /* Expression: 0
+                                        * Referenced by: '<Root>/Memory'
+                                        */
+  real_T Memory_3_InitialCondition;    /* Expression: 0
+                                        * Referenced by: '<Root>/Memory'
+                                        */
+  real_T Memory_5_InitialCondition;    /* Expression: 0
+                                        * Referenced by: '<Root>/Memory'
+                                        */
+  real_T Memory_6_InitialCondition;    /* Expression: 0
+                                        * Referenced by: '<Root>/Memory'
+                                        */
+  real_T Memory_7_InitialCondition;    /* Expression: 0
+                                        * Referenced by: '<Root>/Memory'
+                                        */
+  real_T DataStoreMemory_InitialValue_e;/* Expression: 0
+                                         * Referenced by: '<S4>/Data Store Memory'
+                                         */
+  real_T DataStoreMemory_InitialValue_h;/* Expression: 0
+                                         * Referenced by: '<Root>/Data Store Memory'
+                                         */
+};
+
+/* Real-time Model Data Structure */
+struct tag_RTM_acados_test_T {
+  struct SimStruct_tag * *childSfunctions;
+  const char_T *errorStatus;
+  SS_SimMode simMode;
+  RTWSolverInfo solverInfo;
+  RTWSolverInfo *solverInfoPtr;
+  void *sfcnInfo;
+
+  /*
+   * NonInlinedSFcns:
+   * The following substructure contains information regarding
+   * non-inlined s-functions used in the model.
+   */
+  struct {
+    RTWSfcnInfo sfcnInfo;
+    time_T *taskTimePtrs[1];
+    SimStruct childSFunctions[1];
+    SimStruct *childSFunctionPtrs[1];
+    struct _ssBlkInfo2 blkInfo2[1];
+    struct _ssSFcnModelMethods2 methods2[1];
+    struct _ssSFcnModelMethods3 methods3[1];
+    struct _ssSFcnModelMethods4 methods4[1];
+    struct _ssStatesInfo2 statesInfo2[1];
+    ssPeriodicStatesInfo periodicStatesInfo[1];
+    struct _ssPortInfo2 inputOutputPortInfo2[1];
+    struct {
+      time_T sfcnPeriod[1];
+      time_T sfcnOffset[1];
+      int_T sfcnTsMap[1];
+      struct _ssPortInputs inputPortInfo[15];
+      struct _ssInPortUnit inputPortUnits[15];
+      real_T const *UPtrs0[7];
+      real_T const *UPtrs1[7];
+      real_T const *UPtrs2[63];
+      real_T const *UPtrs3[14];
+      real_T const *UPtrs4[266];
+      real_T const *UPtrs5[7];
+      real_T const *UPtrs6[38];
+      real_T const *UPtrs7[38];
+      real_T const *UPtrs8[2];
+      real_T const *UPtrs9[2];
+      real_T const *UPtrs10[120];
+      real_T const *UPtrs11[120];
+      real_T const *UPtrs12[196];
+      real_T const *UPtrs13[196];
+      real_T const *UPtrs14[49];
+      struct _ssPortOutputs outputPortInfo[8];
+      struct _ssOutPortUnit outputPortUnits[8];
+    } Sfcn0;
+  } NonInlinedSFcns;
+
+  boolean_T zCCacheNeedsReset;
+  boolean_T derivCacheNeedsReset;
+  boolean_T CTOutputIncnstWithState;
+
+  /*
+   * Sizes:
+   * The following substructure contains sizes information
+   * for many of the model attributes such as inputs, outputs,
+   * dwork, sample times, etc.
+   */
+  struct {
+    uint32_T options;
+    int_T numContStates;
+    int_T numU;
+    int_T numY;
+    int_T numSampTimes;
+    int_T numBlocks;
+    int_T numBlockIO;
+    int_T numBlockPrms;
+    int_T numDwork;
+    int_T numSFcnPrms;
+    int_T numSFcns;
+    int_T numIports;
+    int_T numOports;
+    int_T numNonSampZCs;
+    int_T sysDirFeedThru;
+    int_T rtwGenSfcn;
+  } Sizes;
+
+  /*
+   * Timing:
+   * The following substructure contains information regarding
+   * the timing information for the model.
+   */
+  struct {
+    time_T stepSize;
+    uint32_T clockTick0;
+    uint32_T clockTickH0;
+    time_T stepSize0;
+    time_T tStart;
+    time_T tFinal;
+    time_T timeOfLastOutput;
+    boolean_T stopRequestedFlag;
+    time_T *sampleTimes;
+    time_T *offsetTimes;
+    int_T *sampleTimeTaskIDPtr;
+    int_T *sampleHits;
+    int_T *perTaskSampleHits;
+    time_T *t;
+    time_T sampleTimesArray[1];
+    time_T offsetTimesArray[1];
+    int_T sampleTimeTaskIDArray[1];
+    int_T sampleHitArray[1];
+    int_T perTaskSampleHitsArray[1];
+    time_T tArray[1];
+  } Timing;
+};
+
+/* Block parameters (auto storage) */
+extern P_acados_test_T acados_test_P;
+
+/* Block signals (auto storage) */
+extern B_acados_test_T acados_test_B;
+
+/* Block states (auto storage) */
+extern DW_acados_test_T acados_test_DW;
+
+/*
+ * Exported States
+ *
+ * Note: Exported states are block states with an exported global
+ * storage class designation.  Code generation will declare the memory for these
+ * states and exports their symbols.
+ *
+ */
+extern real_T pred_exec_time;          /* '<S4>/Data Store Memory' */
+extern real_T overall_exec_time;       /* '<Root>/Data Store Memory' */
+extern real_T xmeasure_exec_time;      /* '<S3>/Data Store Memory' */
+extern real_T mpc_exec_time;           /* '<S1>/Data Store Memory' */
+extern real_T traj_exec_time;          /* '<S7>/Data Store Memory' */
+
+/* Model entry point functions */
+extern void acados_test_initialize(void);
+extern void acados_test_output(void);
+extern void acados_test_update(void);
+extern void acados_test_terminate(void);
+
+/* Real-time Model object */
+extern RT_MODEL_acados_test_T *const acados_test_M;
+
+/*-
+ * The generated code includes comments that allow you to trace directly
+ * back to the appropriate location in the model.  The basic format
+ * is <system>/block_name, where system is the system number (uniquely
+ * assigned by Simulink) and block_name is the name of the block.
+ *
+ * Use the MATLAB hilite_system command to trace the generated code back
+ * to the model.  For example,
+ *
+ * hilite_system('<S3>')    - opens system 3
+ * hilite_system('<S3>/Kp') - opens and selects block Kp which resides in S3
+ *
+ * Here is the system hierarchy for this model
+ *
+ * '<Root>' : 'acados_test'
+ * '<S1>'   : 'acados_test/MPC-Regler'
+ * '<S2>'   : 'acados_test/RTI Data'
+ * '<S3>'   : 'acados_test/Subsystem'
+ * '<S4>'   : 'acados_test/Subsystem1'
+ * '<S5>'   : 'acados_test/TODO_ESTIMATOR'
+ * '<S6>'   : 'acados_test/MPC-Regler/MATLAB Function'
+ * '<S7>'   : 'acados_test/MPC-Regler/Soll-Trajektorie'
+ * '<S8>'   : 'acados_test/MPC-Regler/Soll-Trajektorie/Referenz-Trajektorie'
+ * '<S9>'   : 'acados_test/RTI Data/RTI Data Store'
+ * '<S10>'  : 'acados_test/RTI Data/RTI Data Store/RTI Data Store'
+ * '<S11>'  : 'acados_test/RTI Data/RTI Data Store/RTI Data Store/RTI Data Store'
+ * '<S12>'  : 'acados_test/Subsystem/MATLAB Function'
+ * '<S13>'  : 'acados_test/Subsystem1/MATLAB Function'
+ */
+#endif                                 /* RTW_HEADER_acados_test_h_ */

@@ -7,9 +7,9 @@
  *
  * Code generation for model "acados_test".
  *
- * Model version              : 1.130
- * Simulink Coder version : 8.13 (R2017b) 24-Jul-2017
- * C source code generated on : Wed Apr 28 15:53:24 2021
+ * Model version              : 7.52
+ * Simulink Coder version : 9.4 (R2020b) 29-Jul-2020
+ * C source code generated on : Wed May 19 15:48:56 2021
  *
  * Target selection: rti1401.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -21,65 +21,40 @@
 #include "acados_test.h"
 #include "acados_test_private.h"
 
-/* Block parameters (auto storage) */
+/* Block parameters (default storage) */
 P_acados_test_T acados_test_P = {
-  /* Expression: 0
-   * Referenced by: '<S7>/Data Store Memory'
+  /* Expression: 0.0
+   * Referenced by: '<Root>/Delay'
    */
   0.0,
 
-  /* Expression: 0
-   * Referenced by: '<S1>/Data Store Memory'
+  /* Expression: 0.0
+   * Referenced by: '<Root>/Delay'
    */
   0.0,
 
-  /* Expression: 0
-   * Referenced by: '<S3>/Data Store Memory'
+  /* Expression: 0.0
+   * Referenced by: '<Root>/Delay'
    */
   0.0,
 
-  /* Expression: 0
-   * Referenced by: '<Root>/Memory'
+  /* Expression: 0.0
+   * Referenced by: '<Root>/Delay'
    */
   0.0,
 
-  /* Expression: 0
-   * Referenced by: '<Root>/Memory'
+  /* Expression: 0.0
+   * Referenced by: '<Root>/Delay'
    */
   0.0,
 
-  /* Expression: 0
-   * Referenced by: '<Root>/Memory'
+  /* Expression: 0.0
+   * Referenced by: '<Root>/Delay'
    */
   0.0,
 
-  /* Expression: 0
-   * Referenced by: '<Root>/Memory'
-   */
-  0.0,
-
-  /* Expression: 0
-   * Referenced by: '<Root>/Memory'
-   */
-  0.0,
-
-  /* Expression: 0
-   * Referenced by: '<Root>/Memory'
-   */
-  0.0,
-
-  /* Expression: 0
-   * Referenced by: '<Root>/Memory'
-   */
-  0.0,
-
-  /* Expression: 0
-   * Referenced by: '<S4>/Data Store Memory'
-   */
-  0.0,
-
-  /* Expression: 0
-   * Referenced by: '<Root>/Data Store Memory'
+  /* Expression: 0.0
+   * Referenced by: '<Root>/Delay'
    */
   0.0
 };

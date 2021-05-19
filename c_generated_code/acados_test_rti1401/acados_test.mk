@@ -1,6 +1,6 @@
 # =============================================================================
 #  FILE:
-#    acados_test.mk
+#    rti1401.tmf
 #
 #  DESCRIPTION:
 #    RTI Template Makefile:
@@ -13,7 +13,7 @@
 #
 #  Copyright 2015, dSPACE GmbH. All rights reserved.
 #
-#  $RCSfile: acados_test.mk $ $Revision: 2.101 $ $Date: 2018/05/17 10:45:14CEST $
+#  $RCSfile: rti1401.tmf $ $Revision: 2.101 $ $Date: 2018/05/17 10:45:14CEST $
 #  $ProjectName: e:/ARC/Products/ImplSW/RTISW/RTI/Components/Build/Makefile/project.pj $
 # =============================================================================
 # NEVER CHANGE THIS LINE:
@@ -86,17 +86,17 @@ VERBOSE_BUILD_OFF_TREATMENT    = PRINT_OUTPUT_ALWAYS
 # RTW specific customization macros
 # SECTION_CUSTOMIZATION_RTW_BEGIN
 MAKEFILE                       = acados_test.mk
-BUILDARGS                      =  ISPROTECTINGMODEL=NOTPROTECTING EXTMODE_STATIC_ALLOC=0 TMW_EXTMODE_TESTING=0 EXTMODE_STATIC_ALLOC_SIZE=1000000 EXTMODE_TRANSPORT=0 MAT_FILE=0
-MATLAB_ROOT                    = C:\Program Files\MATLAB\R2017b
-MATLAB_BIN                     = C:\Program Files\MATLAB\R2017b\bin
-MATLAB_ROOT_ALT                = C:\PROGRA~1\MATLAB\R2017b
-MATLAB_BIN_ALT                 = C:\PROGRA~1\MATLAB\R2017b\bin
-RELEASE_VERSION                = R2017b
+BUILDARGS                      =  EXTMODE_STATIC_ALLOC=0 TMW_EXTMODE_TESTING=0 EXTMODE_STATIC_ALLOC_SIZE=1000000 EXTMODE_TRANSPORT=0 MAT_FILE=0 COMBINE_OUTPUT_UPDATE_FCNS=0 INCLUDE_MDL_TERMINATE_FCN=1 MULTI_INSTANCE_CODE=0 OPTS="-DTID01EQ=0"
+MATLAB_ROOT                    = C:\Program Files\MATLAB\R2020b
+MATLAB_BIN                     = C:\Program Files\MATLAB\R2020b\bin
+MATLAB_ROOT_ALT                = C:\PROGRA~1\MATLAB\R2020b
+MATLAB_BIN_ALT                 = C:\PROGRA~1\MATLAB\R2020b\bin
+RELEASE_VERSION                = R2020b
 RELEASE_VERSION               := $(RELEASE_VERSION,S'\.'_',W_,LC,S'^r'')
 COMPUTER                       = PCWIN64
 MODEL                          = acados_test
-MODULES                        = rt_matrx.c rt_printf.c acados_test_data.c acados_test_trc_ptr.c rtGetInf.c rtGetNaN.c rt_nonfinite.c
-S_FUNCTIONS                    = acados_solver_sfunction_flexcar_acados.c
+MODULES                        = rt_matrx.c rt_printf.c acados_test_data.c acados_test_trc_ptr.c rtGetInf.c rtGetNaN.c rt_nonfinite.c acados_solver_sfunction_flexcar_acados.c
+S_FUNCTIONS                    = 
 S_FUNCTIONS_LIB                = 
 SOLVER                         = 
 NUMST                          = 1
@@ -112,7 +112,7 @@ RTW_SHARED_LIB_SRCS_WILD       =
 RTW_SHARED_LIB_SRCS_DIR        = 
 RTW_SHARED_LIB_OBJS_DIR        = 
 RTW_SHARED_LIB                 = 
-RTW_MODELLIB                   = acados_testlib.lib
+RTW_MODELLIB                   = 
 RTW_MODELREF_LINK_LIBS         = 
 RTW_MODELREF_TARGET_TYPE       = NONE
 RTW_MODELREFS                  = 
@@ -161,7 +161,7 @@ RTI_ASSERTION_MODE              := $(RTI_ASSERTION_MODE,'=,"=)
 SSTATE                           = RUN
 SSTATE                          := $(SSTATE,'=,"=)
 
-SMODE                            = NRTSIM
+SMODE                            = RTSIM
 SMODE                           := $(SMODE,'=,"=)
 
 # SECTION_CUSTOMIZATION_RTI_END
@@ -764,9 +764,11 @@ DEFINE_OPTS = \
 # RTW Custom Include paths from rtwmakecfg.m.
 RTWCUST_INCLUDES = \
 	"$(START_DIR)" \
-	"$(MATLAB_ROOT)\simulink\include\sf_runtime" \
 	"$(START_DIR)\acados_test_rti1401" \
-	"D:\dSpace_Acados_Test"
+	"$(MATLAB_ROOT)\extern\include" \
+	"$(MATLAB_ROOT)\simulink\include" \
+	"$(MATLAB_ROOT)\rtw\c\src" \
+	"$(MATLAB_ROOT)\rtw\c\src\ext_mode\common"
 # End: Custom Include paths.
 
 MATLAB_INCLUDES = \

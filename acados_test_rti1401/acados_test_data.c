@@ -7,14 +7,14 @@
  *
  * Code generation for model "acados_test".
  *
- * Model version              : 7.49
+ * Model version              : 7.53
  * Simulink Coder version : 9.4 (R2020b) 29-Jul-2020
- * C source code generated on : Tue May 18 18:13:41 2021
+ * C source code generated on : Wed May 19 16:01:36 2021
  *
  * Target selection: rti1401.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
  * Embedded hardware selection: Custom Processor->Custom
- * Code generation objectives: Unspecified
+ * Code generation objective: Debugging
  * Validation result: Not run
  */
 

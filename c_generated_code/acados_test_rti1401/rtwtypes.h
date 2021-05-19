@@ -7,9 +7,9 @@
  *
  * Code generation for model "acados_test".
  *
- * Model version              : 1.130
- * Simulink Coder version : 8.13 (R2017b) 24-Jul-2017
- * C source code generated on : Wed Apr 28 15:53:24 2021
+ * Model version              : 7.52
+ * Simulink Coder version : 9.4 (R2020b) 29-Jul-2020
+ * C source code generated on : Wed May 19 15:48:56 2021
  *
  * Target selection: rti1401.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -23,7 +23,7 @@
 #include "tmwtypes.h"
 #include "simstruc_types.h"
 #ifndef POINTER_T
-# define POINTER_T
+#define POINTER_T
 
 typedef void * pointer_T;
 
@@ -31,12 +31,12 @@ typedef void * pointer_T;
 
 /* Logical type definitions */
 #if (!defined(__cplusplus))
-#  ifndef false
-#   define false                       (0U)
-#  endif
+#ifndef false
+#define false                          (0U)
+#endif
 
-#  ifndef true
-#   define true                        (1U)
-#  endif
+#ifndef true
+#define true                           (1U)
+#endif
 #endif
 #endif                                 /* RTWTYPES_H */

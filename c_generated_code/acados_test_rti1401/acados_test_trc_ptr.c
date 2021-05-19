@@ -5,7 +5,7 @@
    Definition of function that initializes the global TRC pointers
 
    RTI1401 7.10 (02-May-2018)
-   Wed Apr 28 15:53:24 2021
+   Wed May 19 15:48:56 2021
 
    Copyright 2021, dSPACE GmbH. All rights reserved.
 
@@ -50,9 +50,9 @@ static void rti_init_trc_pointers_0(void);
 /* Global pointers to data type transitions are separated in different functions to avoid overloading */
 static void rti_init_trc_pointers_0(void)
 {
-  p_0_acados_test_real_T_0 = &acados_test_B.x_pred[0];
-  p_1_acados_test_real_T_0 = &acados_test_P.DataStoreMemory_InitialValue;
-  p_2_acados_test_real_T_0 = &acados_test_DW.Memory_4_PreviousInput[0];
+  p_0_acados_test_real_T_0 = &acados_test_B.vy_pred[0];
+  p_1_acados_test_real_T_0 = &acados_test_P.Delay_1_InitialCondition;
+  p_2_acados_test_real_T_0 = &acados_test_DW.Delay_1_DSTATE[0];
 }
 
 void acados_test_rti_init_trc_pointers(void)

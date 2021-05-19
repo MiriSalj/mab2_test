@@ -6,7 +6,7 @@
    the hardware and software interrupts used.
 
    RTI1401 7.10 (02-May-2018)
-   Wed Apr 28 15:53:24 2021
+   Wed May 19 15:48:56 2021
 
    Copyright 2021, dSPACE GmbH. All rights reserved.
 
@@ -83,11 +83,11 @@ static void rti_TIMERA(rtk_p_task_control_block task)
 #endif
 
 /*Define additional variables*/
-static time_T dsTFinal = 100.0;
+static time_T dsTFinal = 400.0;
 
 #define dsGetTFinal(rtm)               (dsTFinal)
 
-static time_T dsStepSize = 0.1;
+static time_T dsStepSize = 0.4;
 
 # define dsGetStepSize(rtm)            (dsStepSize)
 
@@ -110,19 +110,19 @@ static void rti_mdl_initialize_io_boards(void)
     {
       vcm_module_descriptor_type* msg_mod_ptr;
       msg_mod_ptr = vcm_module_register(VCM_MID_MATLAB, (void *) 0,
-        VCM_TXT_MATLAB, 9, 3, 0,
+        VCM_TXT_MATLAB, 9, 9, 0,
         VCM_VERSION_RELEASE, 0, 0, 0, VCM_CTRL_NO_ST);
       vcm_module_register(VCM_MID_SIMULINK, msg_mod_ptr,
-                          VCM_TXT_SIMULINK, 9, 0, 0,
+                          VCM_TXT_SIMULINK, 10, 2, 0,
                           VCM_VERSION_RELEASE, 0, 0, 0, VCM_CTRL_NO_ST);
       vcm_module_register(VCM_MID_RTW, msg_mod_ptr,
-                          VCM_TXT_RTW, 8, 13, 0,
+                          VCM_TXT_RTW, 9, 4, 0,
                           VCM_VERSION_RELEASE, 0, 0, 0, VCM_CTRL_NO_ST);
       vcm_module_register(VCM_MID_STATEFLOW, msg_mod_ptr,
-                          VCM_TXT_STATEFLOW, 9, 0, 0,
+                          VCM_TXT_STATEFLOW, 10, 3, 0,
                           VCM_VERSION_RELEASE, 0, 0, 0, VCM_CTRL_NO_ST);
       vcm_module_register(VCM_MID_STATEFLOW_CODER, msg_mod_ptr,
-                          VCM_TXT_STATEFLOW_CODER, 8, 13, 0,
+                          VCM_TXT_STATEFLOW_CODER, 9, 4, 0,
                           VCM_VERSION_RELEASE, 0, 0, 0, VCM_CTRL_NO_ST);
     }
   }

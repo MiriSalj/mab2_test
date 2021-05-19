@@ -7,14 +7,14 @@
  *
  * Code generation for model "acados_test".
  *
- * Model version              : 7.49
+ * Model version              : 7.53
  * Simulink Coder version : 9.4 (R2020b) 29-Jul-2020
- * C source code generated on : Tue May 18 18:13:41 2021
+ * C source code generated on : Wed May 19 16:01:36 2021
  *
  * Target selection: rti1401.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
  * Embedded hardware selection: Custom Processor->Custom
- * Code generation objectives: Unspecified
+ * Code generation objective: Debugging
  * Validation result: Not run
  */
 
@@ -87,6 +87,13 @@ void acados_test_output(void)
   int32_T i_0;
 
   /* DigitalClock: '<Root>/Digital Clock' */
+  /* :  vy = vy_pred(2); */
+  /* :  psidot = psidot_pred(2); */
+  /* :  psi = psi_pred(2); */
+  /* :  x = x_pred(2); */
+  /* :  y = y_pred(2); */
+  /* :  phidot = phidot_pred(2); */
+  /* :  phi = phi_pred(2); */
   acados_test_B.DigitalClock = acados_test_M->Timing.t[0];
   for (i = 0; i < 50; i++) {
     /* Delay generated from: '<Root>/Delay' */
@@ -128,22 +135,22 @@ void acados_test_output(void)
   acados_test_B.phi = acados_test_B.phi_pred[1];
 
   /* MATLAB Function: '<S4>/MATLAB Function' */
+  /* :  if t < 0.025 */
   if (acados_test_B.DigitalClock < 0.025) {
+    /* :  x_pred = 0:0.1:4.9; */
     memcpy(&acados_test_B.psi_ref[0], &b[0], 50U * sizeof(real_T));
   }
 
+  /* :  Y_ref = @(x) sin(0.1*x); */
+  /* :  Psi_ref = @(x) 0.1*cos(0.1*x); */
+  /* :  y_ref = Y_ref(x_pred); */
+  /* :  psi_ref = Psi_ref(x_pred); */
   for (i = 0; i < 50; i++) {
     acados_test_B.y_ref[i] = 0.1 * acados_test_B.psi_ref[i];
     acados_test_B.y_ref[i] = sin(acados_test_B.y_ref[i]);
     acados_test_B.psi_ref[i] *= 0.1;
     acados_test_B.psi_ref[i] = cos(acados_test_B.psi_ref[i]);
     acados_test_B.psi_ref[i] *= 0.1;
-
-    /* RateTransition: '<Root>/Rate Transition2' */
-    acados_test_B.RateTransition2[i] = acados_test_B.psi_ref[i];
-
-    /* RateTransition: '<Root>/Rate Transition1' */
-    acados_test_B.RateTransition1[i] = acados_test_B.y_ref[i];
   }
 
   /* SignalConversion generated from: '<S7>/ SFunction ' incorporates:
@@ -158,94 +165,163 @@ void acados_test_output(void)
   acados_test_B.TmpSignalConversionAtSFunctionI[6] = acados_test_B.phi;
 
   /* MATLAB Function: '<S6>/Referenz-Trajektorie' incorporates:
-   *  RateTransition: '<Root>/Rate Transition1'
-   *  RateTransition: '<Root>/Rate Transition2'
    *  SignalConversion generated from: '<S7>/ SFunction '
    */
+  /* :  lbx0 = xmeasure; */
   for (i = 0; i < 7; i++) {
     acados_test_B.lbx0[i] = acados_test_B.TmpSignalConversionAtSFunctionI[i];
   }
 
+  /* :  ubx0 = xmeasure; */
   for (i = 0; i < 7; i++) {
     acados_test_B.ubx0[i] = acados_test_B.TmpSignalConversionAtSFunctionI[i];
   }
 
+  /* :  lbu = [-deg2rad(23),-deg2rad(23), -50, -50, -50, -50]'; */
+  /* :  param = [1.5349e+05, 1.56618e+05, 0.3775, 100, 0.315, 1, 1e-4, 1e-2, 2, 2, 3e-7, 3e-7, 3e-7, 3e-7, 10]; */
+  /* :  nx = 7; */
+  /* :  nu = 6; */
+  /* :  n_M = 1; */
+  /* :  nz = 0; */
+  /* :  N = 50; */
+  /* :  Fx_ref = param(4); */
+  /* :  rdyn = param(5); */
+  /* :  vx = param(15); */
+  /* :  Q_11 = param(6); */
+  /* :  Q_22 = param(7); */
+  /* :  Q_33 = param(8); */
+  /* :  R_11 = param(9); */
+  /* :  R_22 = param(10); */
+  /* :  R_33 = param(11); */
+  /* :  R_44 = param(12); */
+  /* :  R_55 = param(13); */
+  /* :  R_66 = param(14); */
+  /* :  param0 = [Fx_ref; rdyn; vx]; */
+  /* :  params_concatenated = repmat(param0, N+1, 1)'; */
   acados_test_repmat(acados_test_B.params_concatenated);
+
+  /* :  lbu_con = repmat(lbu, N, 1); */
   acados_test_repmat_b(acados_test_B.lbu_con);
+
+  /* :  ubu_con = -lbu_con; */
   for (i = 0; i < 300; i++) {
     acados_test_B.ubu_con[i] = -acados_test_B.lbu_con[i];
   }
 
+  /* :  y_ref_0 = zeros(nx+nu+n_M, 1); */
   for (i = 0; i < 14; i++) {
     acados_test_B.y_ref_0[i] = 0.0;
   }
 
-  acados_test_B.y_ref_0[2] = acados_test_B.RateTransition2[0];
-  acados_test_B.y_ref_0[4] = acados_test_B.RateTransition1[0];
+  /* :  y_ref_0(3) = psi_ref(1); */
+  acados_test_B.y_ref_0[2] = acados_test_B.psi_ref[0];
+
+  /* :  y_ref_0(5) = y_ref(1); */
+  acados_test_B.y_ref_0[4] = acados_test_B.y_ref[0];
+
+  /* :  y_ref_0(end) = Fx_ref; */
   acados_test_B.y_ref_0[13] = 100.0;
+
+  /* :  y_ref_mat = zeros(nx+nu+n_M, N-1); */
   for (i = 0; i < 686; i++) {
     acados_test_B.y_ref_mat[i] = 0.0;
   }
 
+  /* :  y_ref_mat(3, :) = psi_ref(2:end); */
+  /* :  y_ref_mat(5, :) = y_ref(2:end); */
+  /* :  y_ref_mat(end, :) = Fx_ref * ones(1, N-1)'; */
   for (i = 0; i < 49; i++) {
-    acados_test_B.y_ref_mat[14 * i + 2] = acados_test_B.RateTransition2[i + 1];
-    acados_test_B.y_ref_mat[14 * i + 4] = acados_test_B.RateTransition1[i + 1];
+    acados_test_B.y_ref_mat[14 * i + 2] = acados_test_B.psi_ref[i + 1];
+    acados_test_B.y_ref_mat[14 * i + 4] = acados_test_B.y_ref[i + 1];
     acados_test_B.y_ref_mat[14 * i + 13] = 100.0;
   }
 
+  /* :  y_ref_con = reshape(y_ref_mat, (nx+nu+n_M)*(N-1), 1); */
   memcpy(&acados_test_B.y_ref_con[0], &acados_test_B.y_ref_mat[0], 686U * sizeof
          (real_T));
+
+  /* :  y_ref_e = zeros(nx, 1); */
   for (i = 0; i < 7; i++) {
     acados_test_B.y_ref_e[i] = 0.0;
   }
 
-  acados_test_B.y_ref_e[2] = acados_test_B.RateTransition2[49];
-  acados_test_B.y_ref_e[4] = acados_test_B.RateTransition1[49];
+  /* :  y_ref_e(3) = psi_ref(end); */
+  acados_test_B.y_ref_e[2] = acados_test_B.psi_ref[49];
+
+  /* :  y_ref_e(5) = y_ref(end); */
+  acados_test_B.y_ref_e[4] = acados_test_B.y_ref[49];
+
+  /* :  Y_ref_lb = zeros(2, N-1); */
   for (i = 0; i < 98; i++) {
     acados_test_B.lbx[i] = 0.0;
   }
 
+  /* :  Y_ref_ub = zeros(2, N-1); */
   for (i = 0; i < 98; i++) {
     acados_test_B.ubx[i] = 0.0;
   }
 
+  /* :  Y_ref_lb(1, :) = y_ref_mat(3, :) - deg2rad(30); */
   for (i = 0; i < 49; i++) {
     acados_test_B.lbx[i << 1] = acados_test_B.y_ref_mat[14 * i + 2] -
       0.52359877559829882;
   }
 
+  /* :  Y_ref_lb(2, :) = y_ref_mat(5, :) - 1; */
   for (i = 0; i < 49; i++) {
     acados_test_B.lbx[(i << 1) + 1] = acados_test_B.y_ref_mat[14 * i + 4] - 1.0;
   }
 
+  /* :  Y_ref_ub(1, :) = y_ref_mat(3, :) + deg2rad(30); */
   for (i = 0; i < 49; i++) {
     acados_test_B.ubx[i << 1] = acados_test_B.y_ref_mat[14 * i + 2] +
       0.52359877559829882;
   }
 
+  /* :  Y_ref_ub(2, :) = y_ref_mat(5, :) + 1; */
   for (i = 0; i < 49; i++) {
     acados_test_B.ubx[(i << 1) + 1] = acados_test_B.y_ref_mat[14 * i + 4] + 1.0;
   }
 
-  acados_test_B.lbx_e[0] = acados_test_B.RateTransition2[49];
-  acados_test_B.lbx_e[1] = acados_test_B.RateTransition1[49];
-  acados_test_B.ubx_e[0] = acados_test_B.RateTransition2[49];
-  acados_test_B.ubx_e[1] = acados_test_B.RateTransition1[49];
+  /* :  lbx = reshape(Y_ref_lb, 1, 2*(N-1)); */
+  /* :  ubx = reshape(Y_ref_ub, 1, 2*(N-1)); */
+  /* :  lbx_e = [y_ref_e(3), y_ref_e(5)]; */
+  acados_test_B.lbx_e[0] = acados_test_B.psi_ref[49];
+  acados_test_B.lbx_e[1] = acados_test_B.y_ref[49];
+
+  /* :  ubx_e = [y_ref_e(3), y_ref_e(5)]; */
+  acados_test_B.ubx_e[0] = acados_test_B.psi_ref[49];
+  acados_test_B.ubx_e[1] = acados_test_B.y_ref[49];
+
+  /* :  COST_W_0 = zeros(nx+nu+n_M, nx+nu+n_M); */
   for (i = 0; i < 196; i++) {
     acados_test_B.cost_W_0[i] = 0.0;
   }
 
+  /* :  COST_W_e = zeros(nx, nx); */
+  /* :  COST_W_0(3, 3) = Q_11; */
   acados_test_B.cost_W_0[30] = 1.0;
+
+  /* :  COST_W_0(5, 5) = Q_22; */
   acados_test_B.cost_W_0[60] = 0.0001;
+
+  /* :  COST_W_0(8:13, 8:13) = diag([R_11, R_22, R_33, R_44, R_55, R_66]); */
   for (i = 0; i < 6; i++) {
     for (i_0 = 0; i_0 < 6; i_0++) {
       acados_test_B.cost_W_0[(i_0 + 14 * (i + 7)) + 7] = b_0[6 * i + i_0];
     }
   }
 
+  /* :  COST_W_0(14, 14) = Q_33; */
   acados_test_B.cost_W_0[195] = 0.01;
+
+  /* :  COST_W_e = 10*COST_W_0(1:nx, 1:nx); */
+  /* :  cost_W_0 = reshape(COST_W_0, 1, (nx+nu+n_M)*(nx+nu+n_M)); */
+  /* :  cost_W = cost_W_0; */
   memcpy(&acados_test_B.cost_W[0], &acados_test_B.cost_W_0[0], 196U * sizeof
          (real_T));
+
+  /* :  cost_W_e = reshape(COST_W_e, 1, nx*nx); */
   for (i = 0; i < 7; i++) {
     for (i_0 = 0; i_0 < 7; i_0++) {
       acados_test_B.cost_W_e[i_0 + 7 * i] = acados_test_B.cost_W_0[14 * i + i_0]
@@ -262,30 +338,39 @@ void acados_test_output(void)
   }
 
   /* MATLAB Function: '<S1>/MATLAB Function' */
+  /* :  N = 50; */
+  /* :  st_pred = reshape(state_pred, 7, N+1); */
+  /* :  vy_pred = st_pred(1, 1:N); */
   for (i = 0; i < 50; i++) {
     acados_test_B.vy_pred_o[i] = acados_test_B.xtraj[7 * i];
   }
 
+  /* :  psidot_pred = st_pred(2, 1:N); */
   for (i = 0; i < 50; i++) {
     acados_test_B.psidot_pred_o[i] = acados_test_B.xtraj[7 * i + 1];
   }
 
+  /* :  psi_pred = st_pred(3, 1:N); */
   for (i = 0; i < 50; i++) {
     acados_test_B.psi_pred_h[i] = acados_test_B.xtraj[7 * i + 2];
   }
 
+  /* :  x_pred = st_pred(4, 1:N); */
   for (i = 0; i < 50; i++) {
     acados_test_B.x_pred_p[i] = acados_test_B.xtraj[7 * i + 3];
   }
 
+  /* :  y_pred = st_pred(5, 1:N); */
   for (i = 0; i < 50; i++) {
     acados_test_B.y_pred_d[i] = acados_test_B.xtraj[7 * i + 4];
   }
 
+  /* :  phidot_pred = st_pred(6, 1:N); */
   for (i = 0; i < 50; i++) {
     acados_test_B.phidot_pred_o[i] = acados_test_B.xtraj[7 * i + 5];
   }
 
+  /* :  phi_pred = st_pred(7, 1:N); */
   for (i = 0; i < 50; i++) {
     acados_test_B.phi_pred_c[i] = acados_test_B.xtraj[7 * i + 6];
   }
@@ -294,12 +379,6 @@ void acados_test_output(void)
          (real_T));
 
   /* End of MATLAB Function: '<S1>/MATLAB Function' */
-
-  /* RateTransition: '<Root>/Rate Transition' incorporates:
-   *  Delay generated from: '<Root>/Delay'
-   */
-  memcpy(&acados_test_B.RateTransition[0], &acados_test_B.x_pred[0], 50U *
-         sizeof(real_T));
 }
 
 /* Model update function */
@@ -376,7 +455,7 @@ void acados_test_initialize(void)
       Timing.offsetTimesArray[0]);
 
     /* task periods */
-    acados_test_M->Timing.sampleTimes[0] = (0.4);
+    acados_test_M->Timing.sampleTimes[0] = (10.0);
 
     /* task offsets */
     acados_test_M->Timing.offsetTimes[0] = (0.0);
@@ -391,10 +470,10 @@ void acados_test_initialize(void)
   }
 
   rtmSetTFinal(acados_test_M, -1);
-  acados_test_M->Timing.stepSize0 = 0.4;
+  acados_test_M->Timing.stepSize0 = 10.0;
   acados_test_M->solverInfoPtr = (&acados_test_M->solverInfo);
-  acados_test_M->Timing.stepSize = (0.4);
-  rtsiSetFixedStepSize(&acados_test_M->solverInfo, 0.4);
+  acados_test_M->Timing.stepSize = (10.0);
+  rtsiSetFixedStepSize(&acados_test_M->solverInfo, 10.0);
   rtsiSetSolverMode(&acados_test_M->solverInfo, SOLVER_MODE_SINGLETASKING);
 
   /* block I/O */
@@ -428,14 +507,6 @@ void acados_test_initialize(void)
       acados_test_B.phi_pred[i] = 0.0;
     }
 
-    for (i = 0; i < 50; i++) {
-      acados_test_B.RateTransition2[i] = 0.0;
-    }
-
-    for (i = 0; i < 50; i++) {
-      acados_test_B.RateTransition1[i] = 0.0;
-    }
-
     for (i = 0; i < 6; i++) {
       acados_test_B.u0[i] = 0.0;
     }
@@ -450,10 +521,6 @@ void acados_test_initialize(void)
 
     for (i = 0; i < 7; i++) {
       acados_test_B.x1[i] = 0.0;
-    }
-
-    for (i = 0; i < 50; i++) {
-      acados_test_B.RateTransition[i] = 0.0;
     }
 
     for (i = 0; i < 50; i++) {
@@ -1099,7 +1166,7 @@ void acados_test_initialize(void)
       sfcnInitializeSampleTimes(rts);
 
       /* adjust sample time */
-      ssSetSampleTime(rts, 0, 0.4);
+      ssSetSampleTime(rts, 0, 10.0);
       ssSetOffsetTime(rts, 0, 0.0);
       sfcnTsMap[0] = 0;
 

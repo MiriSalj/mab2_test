@@ -95,7 +95,8 @@ p0 = [10; 0.315; 10];
 %% Discretization
 % compile_interface = 'auto';
 codgen_model = 'true';
-nlp_solver = 'sqp_rti'; % sqp, sqp_rti
+%nlp_solver = 'sqp_rti'; % sqp, sqp_rti
+nlp_solver = 'sqp';
 qp_solver = 'partial_condensing_hpipm';
 % full_condensing_hpipm, partial_condensing_hpipm, full_condensing_qpoases
 nlp_solver_exact_hessian = 'false'; % false=gauss_newton, true=exact    
@@ -223,14 +224,14 @@ ocp_model.set('constr_ubx_e', ubx_e);
 %% acados ocp set opts
 ocp_opts = acados_ocp_opts();
 % ocp_opts.set('compile_interface', compile_interface);
-ocp_opts.set('codgen_model', codgen_model);
+%ocp_opts.set('codgen_model', codgen_model);
 ocp_opts.set('param_scheme_N', N);
 ocp_opts.set('nlp_solver', nlp_solver);
-ocp_opts.set('nlp_solver_exact_hessian', nlp_solver_exact_hessian); 
+%ocp_opts.set('nlp_solver_exact_hessian', nlp_solver_exact_hessian); 
 ocp_opts.set('sim_method', sim_method);
 ocp_opts.set('qp_solver', qp_solver);
 ocp_opts.set('qp_solver_cond_N', qp_solver_cond_N);
-ocp_opts.set('regularize_method', 'no_regularize');
+%ocp_opts.set('regularize_method', 'no_regularize');
 % ocp_opts.set('nlp_solver_tol_stat', 1e-4);
 % ocp_opts.set('nlp_solver_tol_eq', 1e-4);
 % ocp_opts.set('nlp_solver_tol_ineq', 1e-4);
@@ -297,9 +298,9 @@ utraj = ocp.get('u');
 xtraj = ocp.get('x');
 
 
-%% Create warmstart for next iteration
-x_traj_init = [xtraj(:, 2:end), xtraj(:, end)];
-u_traj_init = [utraj(:, 2:end), utraj(:, end)];
+% %% Create warmstart for next iteration
+% x_traj_init = [xtraj(:, 2:end), xtraj(:, end)];
+% u_traj_init = [utraj(:, 2:end), utraj(:, end)];
 
 % Generate C-Code
 ocp.generate_c_code(simulink_opts);

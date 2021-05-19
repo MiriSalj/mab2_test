@@ -5,9 +5,9 @@
    Task Configuration file for model : acados_test
 
    RTI1401 7.10 (02-May-2018)/2.17
-   28-Apr-2021 15:53:24
+   19-May-2021 15:48:56
 
-   MATLAB 9.3.0.713579 (R2017b)
+   MATLAB 9.9.0.1592791 (R2020b) Update 5
 
    Copyright (c) 1993-2002 dSPACE GmbH, GERMANY
 
@@ -15,7 +15,7 @@
 
 /* ===== List of model tasks and assigned interrupt sources ================
 
-   Timer Task 1 [0.1 0] s         : Timer A interrupt
+   Timer Task 1 [0.4 0] s         : Timer A interrupt
 
   * ========================================================================= */
 
@@ -109,7 +109,7 @@ static void rti_th_initialize(void)
   pTask1   = rtith_create_task( /* --- Create task. ---------------- */
       rti_TIMERA,                 /*  Task function pointer.           */
       1,                 /*  Task priority.                   */
-      ovc_fcn,                 /*  RTK overrun check type.          */
+      ovc_count,                 /*  RTK overrun check type.          */
       rti_default_overrun_fcn,                 /*  Overrun handler function.        */
       1,                 /*  Overrun count limit.             */
       0);                /*  Simulink TID.                    */
@@ -119,7 +119,7 @@ static void rti_th_initialize(void)
   rtith_bind_interrupt( /* --- Bind interrupt to task. ----- */
       service, subentry,         /*  RTK service, RTK subentry.       */
       pTask1,             /*  Task (TCB pointer).              */
-      (0.1 * RTI_TIMER_TASK_TIME_SCALE),             /*  Sample time or period.           */
+      (0.4 * RTI_TIMER_TASK_TIME_SCALE),             /*  Sample time or period.           */
       C_LOCAL,             /*  RTK channel.                     */
       -1,             /*  Logical interrupt number.        */
       NULL);            /*  Hook function.                   */

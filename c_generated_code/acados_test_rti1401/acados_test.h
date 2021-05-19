@@ -7,9 +7,9 @@
  *
  * Code generation for model "acados_test".
  *
- * Model version              : 1.130
- * Simulink Coder version : 8.13 (R2017b) 24-Jul-2017
- * C source code generated on : Wed Apr 28 15:53:24 2021
+ * Model version              : 7.52
+ * Simulink Coder version : 9.4 (R2020b) 29-Jul-2020
+ * C source code generated on : Wed May 19 15:48:56 2021
  *
  * Target selection: rti1401.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -24,7 +24,7 @@
 #include <string.h>
 #include <math.h>
 #ifndef acados_test_COMMON_INCLUDES_
-# define acados_test_COMMON_INCLUDES_
+#define acados_test_COMMON_INCLUDES_
 #include <brtenv.h>
 #include <rtkernel.h>
 #include <rti_assert.h>
@@ -41,93 +41,106 @@
 
 /* Macros for accessing real-time model data structure */
 #ifndef rtmGetContTimeOutputInconsistentWithStateAtMajorStepFlag
-# define rtmGetContTimeOutputInconsistentWithStateAtMajorStepFlag(rtm) ((rtm)->CTOutputIncnstWithState)
+#define rtmGetContTimeOutputInconsistentWithStateAtMajorStepFlag(rtm) ((rtm)->CTOutputIncnstWithState)
 #endif
 
 #ifndef rtmSetContTimeOutputInconsistentWithStateAtMajorStepFlag
-# define rtmSetContTimeOutputInconsistentWithStateAtMajorStepFlag(rtm, val) ((rtm)->CTOutputIncnstWithState = (val))
+#define rtmSetContTimeOutputInconsistentWithStateAtMajorStepFlag(rtm, val) ((rtm)->CTOutputIncnstWithState = (val))
 #endif
 
 #ifndef rtmGetDerivCacheNeedsReset
-# define rtmGetDerivCacheNeedsReset(rtm) ((rtm)->derivCacheNeedsReset)
+#define rtmGetDerivCacheNeedsReset(rtm) ((rtm)->derivCacheNeedsReset)
 #endif
 
 #ifndef rtmSetDerivCacheNeedsReset
-# define rtmSetDerivCacheNeedsReset(rtm, val) ((rtm)->derivCacheNeedsReset = (val))
+#define rtmSetDerivCacheNeedsReset(rtm, val) ((rtm)->derivCacheNeedsReset = (val))
 #endif
 
 #ifndef rtmGetFinalTime
-# define rtmGetFinalTime(rtm)          ((rtm)->Timing.tFinal)
+#define rtmGetFinalTime(rtm)           ((rtm)->Timing.tFinal)
 #endif
 
 #ifndef rtmGetSampleHitArray
-# define rtmGetSampleHitArray(rtm)     ((rtm)->Timing.sampleHitArray)
+#define rtmGetSampleHitArray(rtm)      ((rtm)->Timing.sampleHitArray)
 #endif
 
 #ifndef rtmGetStepSize
-# define rtmGetStepSize(rtm)           ((rtm)->Timing.stepSize)
+#define rtmGetStepSize(rtm)            ((rtm)->Timing.stepSize)
 #endif
 
 #ifndef rtmGetZCCacheNeedsReset
-# define rtmGetZCCacheNeedsReset(rtm)  ((rtm)->zCCacheNeedsReset)
+#define rtmGetZCCacheNeedsReset(rtm)   ((rtm)->zCCacheNeedsReset)
 #endif
 
 #ifndef rtmSetZCCacheNeedsReset
-# define rtmSetZCCacheNeedsReset(rtm, val) ((rtm)->zCCacheNeedsReset = (val))
+#define rtmSetZCCacheNeedsReset(rtm, val) ((rtm)->zCCacheNeedsReset = (val))
 #endif
 
 #ifndef rtmGet_TimeOfLastOutput
-# define rtmGet_TimeOfLastOutput(rtm)  ((rtm)->Timing.timeOfLastOutput)
+#define rtmGet_TimeOfLastOutput(rtm)   ((rtm)->Timing.timeOfLastOutput)
 #endif
 
 #ifndef rtmGetErrorStatus
-# define rtmGetErrorStatus(rtm)        ((rtm)->errorStatus)
+#define rtmGetErrorStatus(rtm)         ((rtm)->errorStatus)
 #endif
 
 #ifndef rtmSetErrorStatus
-# define rtmSetErrorStatus(rtm, val)   ((rtm)->errorStatus = (val))
+#define rtmSetErrorStatus(rtm, val)    ((rtm)->errorStatus = (val))
 #endif
 
 #ifndef rtmGetStopRequested
-# define rtmGetStopRequested(rtm)      ((rtm)->Timing.stopRequestedFlag)
+#define rtmGetStopRequested(rtm)       ((rtm)->Timing.stopRequestedFlag)
 #endif
 
 #ifndef rtmSetStopRequested
-# define rtmSetStopRequested(rtm, val) ((rtm)->Timing.stopRequestedFlag = (val))
+#define rtmSetStopRequested(rtm, val)  ((rtm)->Timing.stopRequestedFlag = (val))
 #endif
 
 #ifndef rtmGetStopRequestedPtr
-# define rtmGetStopRequestedPtr(rtm)   (&((rtm)->Timing.stopRequestedFlag))
+#define rtmGetStopRequestedPtr(rtm)    (&((rtm)->Timing.stopRequestedFlag))
 #endif
 
 #ifndef rtmGetT
-# define rtmGetT(rtm)                  (rtmGetTPtr((rtm))[0])
+#define rtmGetT(rtm)                   (rtmGetTPtr((rtm))[0])
 #endif
 
 #ifndef rtmGetTFinal
-# define rtmGetTFinal(rtm)             ((rtm)->Timing.tFinal)
+#define rtmGetTFinal(rtm)              ((rtm)->Timing.tFinal)
+#endif
+
+#ifndef rtmGetTPtr
+#define rtmGetTPtr(rtm)                ((rtm)->Timing.t)
 #endif
 
 #ifndef rtmGetTStart
-# define rtmGetTStart(rtm)             ((rtm)->Timing.tStart)
+#define rtmGetTStart(rtm)              ((rtm)->Timing.tStart)
 #endif
 
 #ifndef rtmGetTimeOfLastOutput
-# define rtmGetTimeOfLastOutput(rtm)   ((rtm)->Timing.timeOfLastOutput)
+#define rtmGetTimeOfLastOutput(rtm)    ((rtm)->Timing.timeOfLastOutput)
 #endif
 
-/* Block signals (auto storage) */
+/* Block signals (default storage) */
 typedef struct {
-  real_T y_ref_mat[266];
-  real_T x_pred[20];                   /* '<Root>/Memory' */
-  real_T vy_pred[20];                  /* '<Root>/Memory' */
-  real_T psidot_pred[20];              /* '<Root>/Memory' */
-  real_T psi_pred[20];                 /* '<Root>/Memory' */
-  real_T y_pred[20];                   /* '<Root>/Memory' */
-  real_T phidot_pred[20];              /* '<Root>/Memory' */
-  real_T phi_pred[20];                 /* '<Root>/Memory' */
-  real_T y_ref[20];                    /* '<S4>/MATLAB Function' */
-  real_T psi_ref[20];                  /* '<S4>/MATLAB Function' */
+  real_T y_ref_mat[686];
+  real_T vy_pred[50];                  /* '<Root>/Delay' */
+  real_T psidot_pred[50];              /* '<Root>/Delay' */
+  real_T psi_pred[50];                 /* '<Root>/Delay' */
+  real_T x_pred[50];                   /* '<Root>/Delay' */
+  real_T y_pred[50];                   /* '<Root>/Delay' */
+  real_T phidot_pred[50];              /* '<Root>/Delay' */
+  real_T phi_pred[50];                 /* '<Root>/Delay' */
+  real_T DigitalClock;                 /* '<Root>/Digital Clock' */
+  real_T u0[6];                        /* '<S1>/S-Function' */
+  real_T utraj[300];                   /* '<S1>/S-Function' */
+  real_T xtraj[357];                   /* '<S1>/S-Function' */
+  real_T SFunction_o4;                 /* '<S1>/S-Function' */
+  real_T SFunction_o5;                 /* '<S1>/S-Function' */
+  real_T x1[7];                        /* '<S1>/S-Function' */
+  real_T SFunction_o7;                 /* '<S1>/S-Function' */
+  real_T SFunction_o8;                 /* '<S1>/S-Function' */
+  real_T y_ref[50];                    /* '<S4>/MATLAB Function' */
+  real_T psi_ref[50];                  /* '<S4>/MATLAB Function' */
   real_T vy;                           /* '<S3>/MATLAB Function' */
   real_T psidot;                       /* '<S3>/MATLAB Function' */
   real_T psi;                          /* '<S3>/MATLAB Function' */
@@ -135,88 +148,66 @@ typedef struct {
   real_T y;                            /* '<S3>/MATLAB Function' */
   real_T phidot;                       /* '<S3>/MATLAB Function' */
   real_T phi;                          /* '<S3>/MATLAB Function' */
-  real_T u0[6];                        /* '<S1>/S-Function' */
-  real_T utraj[120];                   /* '<S1>/S-Function' */
-  real_T xtraj[147];                   /* '<S1>/S-Function' */
-  real_T SFunction_o4;                 /* '<S1>/S-Function' */
-  real_T SFunction_o5;                 /* '<S1>/S-Function' */
-  real_T x1[7];                        /* '<S1>/S-Function' */
-  real_T SFunction_o7;                 /* '<S1>/S-Function' */
-  real_T SFunction_o8;                 /* '<S1>/S-Function' */
-  real_T TmpSignalConversionAtSFunctionI[7];/* '<S7>/Referenz-Trajektorie' */
-  real_T lbx0[7];                      /* '<S7>/Referenz-Trajektorie' */
-  real_T ubx0[7];                      /* '<S7>/Referenz-Trajektorie' */
-  real_T params_concatenated[63];      /* '<S7>/Referenz-Trajektorie' */
-  real_T lbu_con[120];                 /* '<S7>/Referenz-Trajektorie' */
-  real_T ubu_con[120];                 /* '<S7>/Referenz-Trajektorie' */
-  real_T y_ref_0[14];                  /* '<S7>/Referenz-Trajektorie' */
-  real_T y_ref_con[266];               /* '<S7>/Referenz-Trajektorie' */
-  real_T y_ref_e[7];                   /* '<S7>/Referenz-Trajektorie' */
-  real_T lbx[38];                      /* '<S7>/Referenz-Trajektorie' */
-  real_T ubx[38];                      /* '<S7>/Referenz-Trajektorie' */
-  real_T lbx_e[2];                     /* '<S7>/Referenz-Trajektorie' */
-  real_T ubx_e[2];                     /* '<S7>/Referenz-Trajektorie' */
-  real_T cost_W_0[196];                /* '<S7>/Referenz-Trajektorie' */
-  real_T cost_W[196];                  /* '<S7>/Referenz-Trajektorie' */
-  real_T cost_W_e[49];                 /* '<S7>/Referenz-Trajektorie' */
-  real_T vy_pred_j[20];                /* '<S1>/MATLAB Function' */
-  real_T psidot_pred_f[20];            /* '<S1>/MATLAB Function' */
-  real_T psi_pred_a[20];               /* '<S1>/MATLAB Function' */
-  real_T x_pred_i[20];                 /* '<S1>/MATLAB Function' */
-  real_T y_pred_g[20];                 /* '<S1>/MATLAB Function' */
-  real_T phidot_pred_e[20];            /* '<S1>/MATLAB Function' */
-  real_T phi_pred_p[20];               /* '<S1>/MATLAB Function' */
+  real_T TmpSignalConversionAtSFunctionI[7];/* '<S6>/Referenz-Trajektorie' */
+  real_T lbx0[7];                      /* '<S6>/Referenz-Trajektorie' */
+  real_T ubx0[7];                      /* '<S6>/Referenz-Trajektorie' */
+  real_T params_concatenated[153];     /* '<S6>/Referenz-Trajektorie' */
+  real_T lbu_con[300];                 /* '<S6>/Referenz-Trajektorie' */
+  real_T ubu_con[300];                 /* '<S6>/Referenz-Trajektorie' */
+  real_T y_ref_0[14];                  /* '<S6>/Referenz-Trajektorie' */
+  real_T y_ref_con[686];               /* '<S6>/Referenz-Trajektorie' */
+  real_T y_ref_e[7];                   /* '<S6>/Referenz-Trajektorie' */
+  real_T lbx[98];                      /* '<S6>/Referenz-Trajektorie' */
+  real_T ubx[98];                      /* '<S6>/Referenz-Trajektorie' */
+  real_T lbx_e[2];                     /* '<S6>/Referenz-Trajektorie' */
+  real_T ubx_e[2];                     /* '<S6>/Referenz-Trajektorie' */
+  real_T cost_W_0[196];                /* '<S6>/Referenz-Trajektorie' */
+  real_T cost_W[196];                  /* '<S6>/Referenz-Trajektorie' */
+  real_T cost_W_e[49];                 /* '<S6>/Referenz-Trajektorie' */
+  real_T vy_pred_o[50];                /* '<S1>/MATLAB Function' */
+  real_T psidot_pred_o[50];            /* '<S1>/MATLAB Function' */
+  real_T psi_pred_h[50];               /* '<S1>/MATLAB Function' */
+  real_T x_pred_p[50];                 /* '<S1>/MATLAB Function' */
+  real_T y_pred_d[50];                 /* '<S1>/MATLAB Function' */
+  real_T phidot_pred_o[50];            /* '<S1>/MATLAB Function' */
+  real_T phi_pred_c[50];               /* '<S1>/MATLAB Function' */
+  real_T st_pred[357];                 /* '<S1>/MATLAB Function' */
 } B_acados_test_T;
 
-/* Block states (auto storage) for system '<Root>' */
+/* Block states (default storage) for system '<Root>' */
 typedef struct {
-  real_T Memory_4_PreviousInput[20];   /* '<Root>/Memory' */
-  real_T Memory_1_PreviousInput[20];   /* '<Root>/Memory' */
-  real_T Memory_2_PreviousInput[20];   /* '<Root>/Memory' */
-  real_T Memory_3_PreviousInput[20];   /* '<Root>/Memory' */
-  real_T Memory_5_PreviousInput[20];   /* '<Root>/Memory' */
-  real_T Memory_6_PreviousInput[20];   /* '<Root>/Memory' */
-  real_T Memory_7_PreviousInput[20];   /* '<Root>/Memory' */
+  real_T Delay_1_DSTATE[50];           /* '<Root>/Delay' */
+  real_T Delay_2_DSTATE[50];           /* '<Root>/Delay' */
+  real_T Delay_3_DSTATE[50];           /* '<Root>/Delay' */
+  real_T Delay_4_DSTATE[50];           /* '<Root>/Delay' */
+  real_T Delay_5_DSTATE[50];           /* '<Root>/Delay' */
+  real_T Delay_6_DSTATE[50];           /* '<Root>/Delay' */
+  real_T Delay_7_DSTATE[50];           /* '<Root>/Delay' */
 } DW_acados_test_T;
 
-/* Parameters (auto storage) */
+/* Parameters (default storage) */
 struct P_acados_test_T_ {
-  real_T DataStoreMemory_InitialValue; /* Expression: 0
-                                        * Referenced by: '<S7>/Data Store Memory'
+  real_T Delay_1_InitialCondition;     /* Expression: 0.0
+                                        * Referenced by: '<Root>/Delay'
                                         */
-  real_T DataStoreMemory_InitialValue_b;/* Expression: 0
-                                         * Referenced by: '<S1>/Data Store Memory'
-                                         */
-  real_T DataStoreMemory_InitialValue_p;/* Expression: 0
-                                         * Referenced by: '<S3>/Data Store Memory'
-                                         */
-  real_T Memory_4_InitialCondition;    /* Expression: 0
-                                        * Referenced by: '<Root>/Memory'
+  real_T Delay_2_InitialCondition;     /* Expression: 0.0
+                                        * Referenced by: '<Root>/Delay'
                                         */
-  real_T Memory_1_InitialCondition;    /* Expression: 0
-                                        * Referenced by: '<Root>/Memory'
+  real_T Delay_3_InitialCondition;     /* Expression: 0.0
+                                        * Referenced by: '<Root>/Delay'
                                         */
-  real_T Memory_2_InitialCondition;    /* Expression: 0
-                                        * Referenced by: '<Root>/Memory'
+  real_T Delay_4_InitialCondition;     /* Expression: 0.0
+                                        * Referenced by: '<Root>/Delay'
                                         */
-  real_T Memory_3_InitialCondition;    /* Expression: 0
-                                        * Referenced by: '<Root>/Memory'
+  real_T Delay_5_InitialCondition;     /* Expression: 0.0
+                                        * Referenced by: '<Root>/Delay'
                                         */
-  real_T Memory_5_InitialCondition;    /* Expression: 0
-                                        * Referenced by: '<Root>/Memory'
+  real_T Delay_6_InitialCondition;     /* Expression: 0.0
+                                        * Referenced by: '<Root>/Delay'
                                         */
-  real_T Memory_6_InitialCondition;    /* Expression: 0
-                                        * Referenced by: '<Root>/Memory'
+  real_T Delay_7_InitialCondition;     /* Expression: 0.0
+                                        * Referenced by: '<Root>/Delay'
                                         */
-  real_T Memory_7_InitialCondition;    /* Expression: 0
-                                        * Referenced by: '<Root>/Memory'
-                                        */
-  real_T DataStoreMemory_InitialValue_e;/* Expression: 0
-                                         * Referenced by: '<S4>/Data Store Memory'
-                                         */
-  real_T DataStoreMemory_InitialValue_h;/* Expression: 0
-                                         * Referenced by: '<Root>/Data Store Memory'
-                                         */
 };
 
 /* Real-time Model Data Structure */
@@ -251,23 +242,25 @@ struct tag_RTM_acados_test_T {
       int_T sfcnTsMap[1];
       struct _ssPortInputs inputPortInfo[15];
       struct _ssInPortUnit inputPortUnits[15];
+      struct _ssInPortCoSimAttribute inputPortCoSimAttribute[15];
       real_T const *UPtrs0[7];
       real_T const *UPtrs1[7];
-      real_T const *UPtrs2[63];
+      real_T const *UPtrs2[153];
       real_T const *UPtrs3[14];
-      real_T const *UPtrs4[266];
+      real_T const *UPtrs4[686];
       real_T const *UPtrs5[7];
-      real_T const *UPtrs6[38];
-      real_T const *UPtrs7[38];
+      real_T const *UPtrs6[98];
+      real_T const *UPtrs7[98];
       real_T const *UPtrs8[2];
       real_T const *UPtrs9[2];
-      real_T const *UPtrs10[120];
-      real_T const *UPtrs11[120];
+      real_T const *UPtrs10[300];
+      real_T const *UPtrs11[300];
       real_T const *UPtrs12[196];
       real_T const *UPtrs13[196];
       real_T const *UPtrs14[49];
       struct _ssPortOutputs outputPortInfo[8];
       struct _ssOutPortUnit outputPortUnits[8];
+      struct _ssOutPortCoSimAttribute outputPortCoSimAttribute[8];
     } Sfcn0;
   } NonInlinedSFcns;
 
@@ -329,28 +322,14 @@ struct tag_RTM_acados_test_T {
   } Timing;
 };
 
-/* Block parameters (auto storage) */
+/* Block parameters (default storage) */
 extern P_acados_test_T acados_test_P;
 
-/* Block signals (auto storage) */
+/* Block signals (default storage) */
 extern B_acados_test_T acados_test_B;
 
-/* Block states (auto storage) */
+/* Block states (default storage) */
 extern DW_acados_test_T acados_test_DW;
-
-/*
- * Exported States
- *
- * Note: Exported states are block states with an exported global
- * storage class designation.  Code generation will declare the memory for these
- * states and exports their symbols.
- *
- */
-extern real_T pred_exec_time;          /* '<S4>/Data Store Memory' */
-extern real_T overall_exec_time;       /* '<Root>/Data Store Memory' */
-extern real_T xmeasure_exec_time;      /* '<S3>/Data Store Memory' */
-extern real_T mpc_exec_time;           /* '<S1>/Data Store Memory' */
-extern real_T traj_exec_time;          /* '<S7>/Data Store Memory' */
 
 /* Model entry point functions */
 extern void acados_test_initialize(void);
@@ -380,14 +359,13 @@ extern RT_MODEL_acados_test_T *const acados_test_M;
  * '<S2>'   : 'acados_test/RTI Data'
  * '<S3>'   : 'acados_test/Subsystem'
  * '<S4>'   : 'acados_test/Subsystem1'
- * '<S5>'   : 'acados_test/TODO_ESTIMATOR'
- * '<S6>'   : 'acados_test/MPC-Regler/MATLAB Function'
- * '<S7>'   : 'acados_test/MPC-Regler/Soll-Trajektorie'
- * '<S8>'   : 'acados_test/MPC-Regler/Soll-Trajektorie/Referenz-Trajektorie'
- * '<S9>'   : 'acados_test/RTI Data/RTI Data Store'
- * '<S10>'  : 'acados_test/RTI Data/RTI Data Store/RTI Data Store'
- * '<S11>'  : 'acados_test/RTI Data/RTI Data Store/RTI Data Store/RTI Data Store'
- * '<S12>'  : 'acados_test/Subsystem/MATLAB Function'
- * '<S13>'  : 'acados_test/Subsystem1/MATLAB Function'
+ * '<S5>'   : 'acados_test/MPC-Regler/MATLAB Function'
+ * '<S6>'   : 'acados_test/MPC-Regler/Soll-Trajektorie'
+ * '<S7>'   : 'acados_test/MPC-Regler/Soll-Trajektorie/Referenz-Trajektorie'
+ * '<S8>'   : 'acados_test/RTI Data/RTI Data Store'
+ * '<S9>'   : 'acados_test/RTI Data/RTI Data Store/RTI Data Store'
+ * '<S10>'  : 'acados_test/RTI Data/RTI Data Store/RTI Data Store/RTI Data Store'
+ * '<S11>'  : 'acados_test/Subsystem/MATLAB Function'
+ * '<S12>'  : 'acados_test/Subsystem1/MATLAB Function'
  */
 #endif                                 /* RTW_HEADER_acados_test_h_ */

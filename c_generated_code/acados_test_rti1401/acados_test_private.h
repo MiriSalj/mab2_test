@@ -7,9 +7,9 @@
  *
  * Code generation for model "acados_test".
  *
- * Model version              : 1.130
- * Simulink Coder version : 8.13 (R2017b) 24-Jul-2017
- * C source code generated on : Wed Apr 28 15:53:24 2021
+ * Model version              : 7.52
+ * Simulink Coder version : 9.4 (R2020b) 29-Jul-2020
+ * C source code generated on : Wed May 19 15:48:56 2021
  *
  * Target selection: rti1401.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -25,15 +25,11 @@
 
 /* Private macros used by the generated code to access rtModel */
 #ifndef rtmSetTFinal
-# define rtmSetTFinal(rtm, val)        ((rtm)->Timing.tFinal = (val))
-#endif
-
-#ifndef rtmGetTPtr
-# define rtmGetTPtr(rtm)               ((rtm)->Timing.t)
+#define rtmSetTFinal(rtm, val)         ((rtm)->Timing.tFinal = (val))
 #endif
 
 #ifndef rtmSetTPtr
-# define rtmSetTPtr(rtm, val)          ((rtm)->Timing.t = (val))
+#define rtmSetTPtr(rtm, val)           ((rtm)->Timing.t = (val))
 #endif
 
 extern void acados_solver_sfunction_flexcar_acados(SimStruct *rts);

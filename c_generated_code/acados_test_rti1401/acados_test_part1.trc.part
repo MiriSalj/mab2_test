@@ -1,66 +1,104 @@
 -- ******** Model variables ***************************************************
 
 group "Model Root"
-	group "Data Store\nMemory" -- block-group
+	group "Digital Clock" -- block-group
 	{
-	 block: "DataStoreMemory"
+	 block: "DigitalClock"
 	}
-
-		p_1_acados_test_real_T_0[11]
+		p_0_acados_test_real_T_0[350]
 		{
 		 type:    flt(64,IEEE)*
-		 alias:   "InitialValue"
-		 flags:   PARAM
+		 alias:   "Out1"
+		 flags:   OUTPUT|READONLY
 		}
 
 
-	endgroup -- block-group "Data Store\nMemory"
+	endgroup -- block-group "Digital Clock"
 
-	group "Memory" -- block-group
+	group "Delay" -- block-group
 	{
-	 block: "Memory"
+	 block: "Delay"
 	}
 		-- Skipping output
 
 
-	endgroup -- block-group "Memory"
+	endgroup -- block-group "Delay"
+
+	group "Scope" -- block-group
+	{
+	 block: "Scope"
+	}
+
+
+
+	endgroup -- block-group "Scope"
+
+	group "Scope1" -- block-group
+	{
+	 block: "Scope"
+	}
+		p_0_acados_test_real_T_0[351]
+		{
+		 type:    acados_test_ArrayDT0_2*
+		 alias:   "In1"
+		 flags:   READONLY
+		}
+
+
+
+	endgroup -- block-group "Scope1"
+
+	group "Scope2" -- block-group
+	{
+	 block: "Scope"
+	}
+		p_0_acados_test_real_T_0[353]
+		{
+		 type:    acados_test_ArrayDT0_4*
+		 alias:   "In1"
+		 flags:   READONLY
+		}
+
+
+
+	endgroup -- block-group "Scope2"
 
   
   
 	group "MPC-Regler" -- subsystem-group
 
 		-- Skipping output
-		p_0_acados_test_real_T_0[187]
+		p_0_acados_test_real_T_0[351]
 		{
 		 type:    flt(64,IEEE)*
 		 alias:   " delta_front_[rad]"
 		 flags:   OUTPUT|READONLY
 		}
-		p_0_acados_test_real_T_0[188]
+		p_0_acados_test_real_T_0[352]
 		{
 		 type:    flt(64,IEEE)*
 		 alias:   " delta_rear_[rad]"
 		 flags:   OUTPUT|READONLY
 		}
-		p_0_acados_test_real_T_0[189]
+		p_0_acados_test_real_T_0[353]
 		{
 		 type:    flt(64,IEEE)*
 		 alias:   "M_FL[Nm]"
 		 flags:   OUTPUT|READONLY
 		}
-		p_0_acados_test_real_T_0[190]
+		p_0_acados_test_real_T_0[354]
 		{
 		 type:    flt(64,IEEE)*
 		 alias:   "M_FR[Nm]"
 		 flags:   OUTPUT|READONLY
 		}
-		p_0_acados_test_real_T_0[191]
+		p_0_acados_test_real_T_0[355]
 		{
 		 type:    flt(64,IEEE)*
 		 alias:   "M_RL[Nm]"
 		 flags:   OUTPUT|READONLY
 		}
-		p_0_acados_test_real_T_0[192]
+		p_0_acados_test_real_T_0[356]
 		{
 		 type:    flt(64,IEEE)*
 		 alias:   "M_RR[Nm]"
@@ -68,26 +106,11 @@ group "Model Root"
 		}
 
 
-		group "Data Store\nMemory" -- block-group
-		{
-		 block: "DataStoreMemory"
-		}
-
-			p_1_acados_test_real_T_0[1]
-			{
-			 type:    flt(64,IEEE)*
-			 alias:   "InitialValue"
-			 flags:   PARAM
-			}
-
-
-		endgroup -- block-group "Data Store\nMemory"
-
 		group "CPU Time" -- block-group
 		{
 		 block: "Display"
 		}
-			p_0_acados_test_real_T_0[469]
+			p_0_acados_test_real_T_0[1023]
 			{
 			 type:    flt(64,IEEE)*
 			 alias:   "In1"
@@ -102,7 +125,7 @@ group "Model Root"
 		{
 		 block: "Display"
 		}
-			p_0_acados_test_real_T_0[461]
+			p_0_acados_test_real_T_0[1015]
 			{
 			 type:    flt(64,IEEE)*
 			 alias:   "In1"
@@ -117,7 +140,7 @@ group "Model Root"
 		{
 		 block: "Display"
 		}
-			p_0_acados_test_real_T_0[460]
+			p_0_acados_test_real_T_0[1014]
 			{
 			 type:    flt(64,IEEE)*
 			 alias:   "In1"
@@ -132,7 +155,7 @@ group "Model Root"
 		{
 		 block: "Display"
 		}
-			p_0_acados_test_real_T_0[470]
+			p_0_acados_test_real_T_0[1024]
 			{
 			 type:    flt(64,IEEE)*
 			 alias:   "In1"
@@ -147,49 +170,49 @@ group "Model Root"
 		{
 		 block: "S-Function"
 		}
-			p_0_acados_test_real_T_0[187]
+			p_0_acados_test_real_T_0[351]
 			{
 			 type:    acados_test_ArrayDT0_6*
 			 alias:   "Out1"
 			 flags:   OUTPUT|READONLY
 			}
-			p_0_acados_test_real_T_0[193]
+			p_0_acados_test_real_T_0[357]
 			{
-			 type:    acados_test_ArrayDT0_120*
+			 type:    acados_test_ArrayDT0_300*
 			 alias:   "Out2"
 			 flags:   OUTPUT|READONLY
 			}
-			p_0_acados_test_real_T_0[313]
+			p_0_acados_test_real_T_0[657]
 			{
-			 type:    acados_test_ArrayDT0_147*
+			 type:    acados_test_ArrayDT0_357*
 			 alias:   "Out3"
 			 flags:   OUTPUT|READONLY
 			}
-			p_0_acados_test_real_T_0[460]
+			p_0_acados_test_real_T_0[1014]
 			{
 			 type:    flt(64,IEEE)*
 			 alias:   "Out4"
 			 flags:   OUTPUT|READONLY
 			}
-			p_0_acados_test_real_T_0[461]
+			p_0_acados_test_real_T_0[1015]
 			{
 			 type:    flt(64,IEEE)*
 			 alias:   "Out5"
 			 flags:   OUTPUT|READONLY
 			}
-			p_0_acados_test_real_T_0[462]
+			p_0_acados_test_real_T_0[1016]
 			{
 			 type:    acados_test_ArrayDT0_7*
 			 alias:   "Out6"
 			 flags:   OUTPUT|READONLY
 			}
-			p_0_acados_test_real_T_0[469]
+			p_0_acados_test_real_T_0[1023]
 			{
 			 type:    flt(64,IEEE)*
 			 alias:   "Out7"
 			 flags:   OUTPUT|READONLY
 			}
-			p_0_acados_test_real_T_0[470]
+			p_0_acados_test_real_T_0[1024]
 			{
 			 type:    flt(64,IEEE)*
 			 alias:   "Out8"
@@ -203,91 +226,91 @@ group "Model Root"
   
 		group "Soll-Trajektorie" -- subsystem-group
 
-			p_0_acados_test_real_T_0[478]
+			p_0_acados_test_real_T_0[1139]
 			{
-			 type:    acados_test_ArrayDT0_7*
+			 type:    acados_test_ArrayDT0_1_7_Col*
 			 alias:   "lbx"
 			 flags:   OUTPUT|READONLY
 			}
-			p_0_acados_test_real_T_0[485]
+			p_0_acados_test_real_T_0[1146]
 			{
-			 type:    acados_test_ArrayDT0_7*
+			 type:    acados_test_ArrayDT0_1_7_Col*
 			 alias:   "ubx"
 			 flags:   OUTPUT|READONLY
 			}
-			p_0_acados_test_real_T_0[492]
+			p_0_acados_test_real_T_0[1153]
 			{
-			 type:    acados_test_ArrayDT0_1_63_Col*
+			 type:    acados_test_ArrayDT0_1_153_Col*
 			 alias:   "param"
 			 flags:   OUTPUT|READONLY
 			}
-			p_0_acados_test_real_T_0[795]
+			p_0_acados_test_real_T_0[1906]
 			{
 			 type:    acados_test_ArrayDT0_14*
 			 alias:   "y_ref_0"
 			 flags:   OUTPUT|READONLY
 			}
-			p_0_acados_test_real_T_0[809]
+			p_0_acados_test_real_T_0[1920]
 			{
-			 type:    acados_test_ArrayDT0_266*
+			 type:    acados_test_ArrayDT0_686*
 			 alias:   "y_ref_con"
 			 flags:   OUTPUT|READONLY
 			}
-			p_0_acados_test_real_T_0[1075]
+			p_0_acados_test_real_T_0[2606]
 			{
 			 type:    acados_test_ArrayDT0_7*
 			 alias:   "y_ref_e"
 			 flags:   OUTPUT|READONLY
 			}
-			p_0_acados_test_real_T_0[1082]
+			p_0_acados_test_real_T_0[2613]
 			{
-			 type:    acados_test_ArrayDT0_1_38_Col*
+			 type:    acados_test_ArrayDT0_1_98_Col*
 			 alias:   "lbx_Concatenated"
 			 flags:   OUTPUT|READONLY
 			}
-			p_0_acados_test_real_T_0[1120]
+			p_0_acados_test_real_T_0[2711]
 			{
-			 type:    acados_test_ArrayDT0_1_38_Col*
+			 type:    acados_test_ArrayDT0_1_98_Col*
 			 alias:   "ubx_Concatenated"
 			 flags:   OUTPUT|READONLY
 			}
-			p_0_acados_test_real_T_0[1158]
+			p_0_acados_test_real_T_0[2809]
 			{
 			 type:    acados_test_ArrayDT0_1_2_Col*
 			 alias:   "lbx_e"
 			 flags:   OUTPUT|READONLY
 			}
-			p_0_acados_test_real_T_0[1160]
+			p_0_acados_test_real_T_0[2811]
 			{
 			 type:    acados_test_ArrayDT0_1_2_Col*
 			 alias:   "ubx_e"
 			 flags:   OUTPUT|READONLY
 			}
-			p_0_acados_test_real_T_0[555]
+			p_0_acados_test_real_T_0[1306]
 			{
-			 type:    acados_test_ArrayDT0_120*
+			 type:    acados_test_ArrayDT0_300*
 			 alias:   "lbu_Concatenated"
 			 flags:   OUTPUT|READONLY
 			}
-			p_0_acados_test_real_T_0[675]
+			p_0_acados_test_real_T_0[1606]
 			{
-			 type:    acados_test_ArrayDT0_120*
+			 type:    acados_test_ArrayDT0_300*
 			 alias:   "ubu_Concatenated"
 			 flags:   OUTPUT|READONLY
 			}
-			p_0_acados_test_real_T_0[1162]
+			p_0_acados_test_real_T_0[2813]
 			{
 			 type:    acados_test_ArrayDT0_1_196_Col*
 			 alias:   "W_0"
 			 flags:   OUTPUT|READONLY
 			}
-			p_0_acados_test_real_T_0[1358]
+			p_0_acados_test_real_T_0[3009]
 			{
 			 type:    acados_test_ArrayDT0_1_196_Col*
 			 alias:   "W"
 			 flags:   OUTPUT|READONLY
 			}
-			p_0_acados_test_real_T_0[1554]
+			p_0_acados_test_real_T_0[3205]
 			{
 			 type:    acados_test_ArrayDT0_1_49_Col*
 			 alias:   "W_e"
@@ -295,110 +318,95 @@ group "Model Root"
 			}
 
 
-			group "Data Store\nMemory" -- block-group
-			{
-			 block: "DataStoreMemory"
-			}
-
-				p_1_acados_test_real_T_0[0]
-				{
-				 type:    flt(64,IEEE)*
-				 alias:   "InitialValue"
-				 flags:   PARAM
-				}
-
-
-			endgroup -- block-group "Data Store\nMemory"
-
   
   
 			group "Referenz-Trajektorie" -- subsystem-group
 
-				p_0_acados_test_real_T_0[478]
+				p_0_acados_test_real_T_0[1139]
 				{
-				 type:    acados_test_ArrayDT0_7*
+				 type:    acados_test_ArrayDT0_1_7_Col*
 				 alias:   "lbx0"
 				 flags:   OUTPUT|READONLY
 				}
-				p_0_acados_test_real_T_0[485]
+				p_0_acados_test_real_T_0[1146]
 				{
-				 type:    acados_test_ArrayDT0_7*
+				 type:    acados_test_ArrayDT0_1_7_Col*
 				 alias:   "ubx0"
 				 flags:   OUTPUT|READONLY
 				}
-				p_0_acados_test_real_T_0[492]
+				p_0_acados_test_real_T_0[1153]
 				{
-				 type:    acados_test_ArrayDT0_1_63_Col*
+				 type:    acados_test_ArrayDT0_1_153_Col*
 				 alias:   "params_concatenated"
 				 flags:   OUTPUT|READONLY
 				}
-				p_0_acados_test_real_T_0[555]
+				p_0_acados_test_real_T_0[1306]
 				{
-				 type:    acados_test_ArrayDT0_120*
+				 type:    acados_test_ArrayDT0_300*
 				 alias:   "lbu_con"
 				 flags:   OUTPUT|READONLY
 				}
-				p_0_acados_test_real_T_0[675]
+				p_0_acados_test_real_T_0[1606]
 				{
-				 type:    acados_test_ArrayDT0_120*
+				 type:    acados_test_ArrayDT0_300*
 				 alias:   "ubu_con"
 				 flags:   OUTPUT|READONLY
 				}
-				p_0_acados_test_real_T_0[795]
+				p_0_acados_test_real_T_0[1906]
 				{
 				 type:    acados_test_ArrayDT0_14*
 				 alias:   "y_ref_0"
 				 flags:   OUTPUT|READONLY
 				}
-				p_0_acados_test_real_T_0[809]
+				p_0_acados_test_real_T_0[1920]
 				{
-				 type:    acados_test_ArrayDT0_266*
+				 type:    acados_test_ArrayDT0_686*
 				 alias:   "y_ref_con"
 				 flags:   OUTPUT|READONLY
 				}
-				p_0_acados_test_real_T_0[1075]
+				p_0_acados_test_real_T_0[2606]
 				{
 				 type:    acados_test_ArrayDT0_7*
 				 alias:   "y_ref_e"
 				 flags:   OUTPUT|READONLY
 				}
-				p_0_acados_test_real_T_0[1082]
+				p_0_acados_test_real_T_0[2613]
 				{
-				 type:    acados_test_ArrayDT0_1_38_Col*
+				 type:    acados_test_ArrayDT0_1_98_Col*
 				 alias:   "lbx"
 				 flags:   OUTPUT|READONLY
 				}
-				p_0_acados_test_real_T_0[1120]
+				p_0_acados_test_real_T_0[2711]
 				{
-				 type:    acados_test_ArrayDT0_1_38_Col*
+				 type:    acados_test_ArrayDT0_1_98_Col*
 				 alias:   "ubx"
 				 flags:   OUTPUT|READONLY
 				}
-				p_0_acados_test_real_T_0[1158]
+				p_0_acados_test_real_T_0[2809]
 				{
 				 type:    acados_test_ArrayDT0_1_2_Col*
 				 alias:   "lbx_e"
 				 flags:   OUTPUT|READONLY
 				}
-				p_0_acados_test_real_T_0[1160]
+				p_0_acados_test_real_T_0[2811]
 				{
 				 type:    acados_test_ArrayDT0_1_2_Col*
 				 alias:   "ubx_e"
 				 flags:   OUTPUT|READONLY
 				}
-				p_0_acados_test_real_T_0[1162]
+				p_0_acados_test_real_T_0[2813]
 				{
 				 type:    acados_test_ArrayDT0_1_196_Col*
 				 alias:   "cost_W_0"
 				 flags:   OUTPUT|READONLY
 				}
-				p_0_acados_test_real_T_0[1358]
+				p_0_acados_test_real_T_0[3009]
 				{
 				 type:    acados_test_ArrayDT0_1_196_Col*
 				 alias:   "cost_W"
 				 flags:   OUTPUT|READONLY
 				}
-				p_0_acados_test_real_T_0[1554]
+				p_0_acados_test_real_T_0[3205]
 				{
 				 type:    acados_test_ArrayDT0_1_49_Col*
 				 alias:   "cost_W_e"
@@ -416,46 +424,52 @@ group "Model Root"
   
 		group "MATLAB Function" -- subsystem-group
 
-			p_0_acados_test_real_T_0[1603]
+			p_0_acados_test_real_T_0[3254]
 			{
-			 type:    acados_test_ArrayDT0_1_20_Col*
+			 type:    acados_test_ArrayDT0_1_50_Col*
 			 alias:   "vy_pred"
 			 flags:   OUTPUT|READONLY
 			}
-			p_0_acados_test_real_T_0[1623]
+			p_0_acados_test_real_T_0[3304]
 			{
-			 type:    acados_test_ArrayDT0_1_20_Col*
+			 type:    acados_test_ArrayDT0_1_50_Col*
 			 alias:   "psidot_pred"
 			 flags:   OUTPUT|READONLY
 			}
-			p_0_acados_test_real_T_0[1643]
+			p_0_acados_test_real_T_0[3354]
 			{
-			 type:    acados_test_ArrayDT0_1_20_Col*
+			 type:    acados_test_ArrayDT0_1_50_Col*
 			 alias:   "psi_pred"
 			 flags:   OUTPUT|READONLY
 			}
-			p_0_acados_test_real_T_0[1663]
+			p_0_acados_test_real_T_0[3404]
 			{
-			 type:    acados_test_ArrayDT0_1_20_Col*
+			 type:    acados_test_ArrayDT0_1_50_Col*
 			 alias:   "x_pred"
 			 flags:   OUTPUT|READONLY
 			}
-			p_0_acados_test_real_T_0[1683]
+			p_0_acados_test_real_T_0[3454]
 			{
-			 type:    acados_test_ArrayDT0_1_20_Col*
+			 type:    acados_test_ArrayDT0_1_50_Col*
 			 alias:   "y_pred"
 			 flags:   OUTPUT|READONLY
 			}
-			p_0_acados_test_real_T_0[1703]
+			p_0_acados_test_real_T_0[3504]
 			{
-			 type:    acados_test_ArrayDT0_1_20_Col*
+			 type:    acados_test_ArrayDT0_1_50_Col*
 			 alias:   "phidot_pred"
 			 flags:   OUTPUT|READONLY
 			}
-			p_0_acados_test_real_T_0[1723]
+			p_0_acados_test_real_T_0[3554]
 			{
-			 type:    acados_test_ArrayDT0_1_20_Col*
+			 type:    acados_test_ArrayDT0_1_50_Col*
 			 alias:   "phi_pred"
+			 flags:   OUTPUT|READONLY
+			}
+			p_0_acados_test_real_T_0[3604]
+			{
+			 type:    acados_test_ArrayDT0_7_51_Col*
+			 alias:   "st_pred"
 			 flags:   OUTPUT|READONLY
 			}
 
@@ -479,62 +493,47 @@ group "Model Root"
 		-- Skipping output
 
 
-		group "Data Store\nMemory" -- block-group
-		{
-		 block: "DataStoreMemory"
-		}
-
-			p_1_acados_test_real_T_0[2]
-			{
-			 type:    flt(64,IEEE)*
-			 alias:   "InitialValue"
-			 flags:   PARAM
-			}
-
-
-		endgroup -- block-group "Data Store\nMemory"
-
   
   
 		group "MATLAB Function" -- subsystem-group
 
-			p_0_acados_test_real_T_0[180]
+			p_0_acados_test_real_T_0[1125]
 			{
 			 type:    flt(64,IEEE)*
 			 alias:   "vy"
 			 flags:   OUTPUT|READONLY
 			}
-			p_0_acados_test_real_T_0[181]
+			p_0_acados_test_real_T_0[1126]
 			{
 			 type:    flt(64,IEEE)*
 			 alias:   "psidot"
 			 flags:   OUTPUT|READONLY
 			}
-			p_0_acados_test_real_T_0[182]
+			p_0_acados_test_real_T_0[1127]
 			{
 			 type:    flt(64,IEEE)*
 			 alias:   "psi"
 			 flags:   OUTPUT|READONLY
 			}
-			p_0_acados_test_real_T_0[183]
+			p_0_acados_test_real_T_0[1128]
 			{
 			 type:    flt(64,IEEE)*
 			 alias:   "x"
 			 flags:   OUTPUT|READONLY
 			}
-			p_0_acados_test_real_T_0[184]
+			p_0_acados_test_real_T_0[1129]
 			{
 			 type:    flt(64,IEEE)*
 			 alias:   "y"
 			 flags:   OUTPUT|READONLY
 			}
-			p_0_acados_test_real_T_0[185]
+			p_0_acados_test_real_T_0[1130]
 			{
 			 type:    flt(64,IEEE)*
 			 alias:   "phidot"
 			 flags:   OUTPUT|READONLY
 			}
-			p_0_acados_test_real_T_0[186]
+			p_0_acados_test_real_T_0[1131]
 			{
 			 type:    flt(64,IEEE)*
 			 alias:   "phi"
@@ -552,54 +551,39 @@ group "Model Root"
   
 	group "Subsystem1" -- subsystem-group
 
-		p_0_acados_test_real_T_0[0]
+		p_0_acados_test_real_T_0[150]
 		{
-		 type:    acados_test_ArrayDT0_1_20_Col*
+		 type:    acados_test_ArrayDT0_1_50_Col*
 		 alias:   "x_pred\n"
 		 flags:   OUTPUT|READONLY
 		}
-		p_0_acados_test_real_T_0[140]
+		p_0_acados_test_real_T_0[1025]
 		{
-		 type:    acados_test_ArrayDT0_1_20_Col*
+		 type:    acados_test_ArrayDT0_1_50_Col*
 		 alias:   "y_ref"
 		 flags:   OUTPUT|READONLY
 		}
-		p_0_acados_test_real_T_0[160]
+		p_0_acados_test_real_T_0[1075]
 		{
-		 type:    acados_test_ArrayDT0_1_20_Col*
+		 type:    acados_test_ArrayDT0_1_50_Col*
 		 alias:   "psi_ref"
 		 flags:   OUTPUT|READONLY
 		}
 
 
-		group "Data Store\nMemory" -- block-group
-		{
-		 block: "DataStoreMemory"
-		}
-
-			p_1_acados_test_real_T_0[10]
-			{
-			 type:    flt(64,IEEE)*
-			 alias:   "InitialValue"
-			 flags:   PARAM
-			}
-
-
-		endgroup -- block-group "Data Store\nMemory"
-
   
   
 		group "MATLAB Function" -- subsystem-group
 
-			p_0_acados_test_real_T_0[140]
+			p_0_acados_test_real_T_0[1025]
 			{
-			 type:    acados_test_ArrayDT0_1_20_Col*
+			 type:    acados_test_ArrayDT0_1_50_Col*
 			 alias:   "y_ref"
 			 flags:   OUTPUT|READONLY
 			}
-			p_0_acados_test_real_T_0[160]
+			p_0_acados_test_real_T_0[1075]
 			{
-			 type:    acados_test_ArrayDT0_1_20_Col*
+			 type:    acados_test_ArrayDT0_1_50_Col*
 			 alias:   "psi_ref"
 			 flags:   OUTPUT|READONLY
 			}

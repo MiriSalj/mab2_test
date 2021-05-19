@@ -5,7 +5,7 @@
    Task Configuration file for model : acados_test
 
    RTI1401 7.10 (02-May-2018)/2.17
-   18-May-2021 18:13:41
+   19-May-2021 16:01:36
 
    MATLAB 9.9.0.1592791 (R2020b) Update 5
 
@@ -15,7 +15,7 @@
 
 /* ===== List of model tasks and assigned interrupt sources ================
 
-   Timer Task 1 [0.4 0] s         : Timer A interrupt
+   Timer Task 1 [10 0] s          : Timer A interrupt
 
   * ========================================================================= */
 
@@ -119,7 +119,7 @@ static void rti_th_initialize(void)
   rtith_bind_interrupt( /* --- Bind interrupt to task. ----- */
       service, subentry,         /*  RTK service, RTK subentry.       */
       pTask1,             /*  Task (TCB pointer).              */
-      (0.4 * RTI_TIMER_TASK_TIME_SCALE),             /*  Sample time or period.           */
+      (10 * RTI_TIMER_TASK_TIME_SCALE),             /*  Sample time or period.           */
       C_LOCAL,             /*  RTK channel.                     */
       -1,             /*  Logical interrupt number.        */
       NULL);            /*  Hook function.                   */

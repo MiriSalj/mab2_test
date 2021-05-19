@@ -7,14 +7,14 @@
  *
  * Code generation for model "acados_test".
  *
- * Model version              : 7.49
+ * Model version              : 7.53
  * Simulink Coder version : 9.4 (R2020b) 29-Jul-2020
- * C source code generated on : Tue May 18 18:13:41 2021
+ * C source code generated on : Wed May 19 16:01:36 2021
  *
  * Target selection: rti1401.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
  * Embedded hardware selection: Custom Processor->Custom
- * Code generation objectives: Unspecified
+ * Code generation objective: Debugging
  * Validation result: Not run
  */
 
@@ -131,8 +131,6 @@ typedef struct {
   real_T phidot_pred[50];              /* '<Root>/Delay' */
   real_T phi_pred[50];                 /* '<Root>/Delay' */
   real_T DigitalClock;                 /* '<Root>/Digital Clock' */
-  real_T RateTransition2[50];          /* '<Root>/Rate Transition2' */
-  real_T RateTransition1[50];          /* '<Root>/Rate Transition1' */
   real_T u0[6];                        /* '<S1>/S-Function' */
   real_T utraj[300];                   /* '<S1>/S-Function' */
   real_T xtraj[357];                   /* '<S1>/S-Function' */
@@ -141,7 +139,6 @@ typedef struct {
   real_T x1[7];                        /* '<S1>/S-Function' */
   real_T SFunction_o7;                 /* '<S1>/S-Function' */
   real_T SFunction_o8;                 /* '<S1>/S-Function' */
-  real_T RateTransition[50];           /* '<Root>/Rate Transition' */
   real_T y_ref[50];                    /* '<S4>/MATLAB Function' */
   real_T psi_ref[50];                  /* '<S4>/MATLAB Function' */
   real_T vy;                           /* '<S3>/MATLAB Function' */

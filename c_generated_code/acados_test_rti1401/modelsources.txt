@@ -1,1 +1,3 @@
-   acados_test.c  acados_test_trc_ptr.c 
+  acados_test.c
+acados_test_trc_ptr.c
+

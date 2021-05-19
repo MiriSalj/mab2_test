@@ -6,7 +6,7 @@
    the hardware and software interrupts used.
 
    RTI1401 7.10 (02-May-2018)
-   Tue May 18 18:13:41 2021
+   Wed May 19 16:01:36 2021
 
    Copyright 2021, dSPACE GmbH. All rights reserved.
 
@@ -87,7 +87,7 @@ static time_T dsTFinal = 400.0;
 
 #define dsGetTFinal(rtm)               (dsTFinal)
 
-static time_T dsStepSize = 0.4;
+static time_T dsStepSize = 10.0;
 
 # define dsGetStepSize(rtm)            (dsStepSize)
 

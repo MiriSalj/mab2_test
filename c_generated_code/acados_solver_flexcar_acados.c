@@ -113,7 +113,8 @@ int flexcar_acados_acados_create(nlp_solver_capsule * capsule)
     ************************************************/
     ocp_nlp_plan * nlp_solver_plan = ocp_nlp_plan_create(N);
     capsule->nlp_solver_plan = nlp_solver_plan;
-    nlp_solver_plan->nlp_solver = SQP_RTI;
+    nlp_solver_plan->nlp_solver = SQP;
+    
 
     nlp_solver_plan->ocp_qp_solver_plan.qp_solver = PARTIAL_CONDENSING_HPIPM;
 
@@ -1263,6 +1264,24 @@ int flexcar_acados_acados_create(nlp_solver_capsule * capsule)
 
     int qp_solver_iter_max = 50;
     ocp_nlp_solver_opts_set(nlp_config, capsule->nlp_opts, "qp_iter_max", &qp_solver_iter_max);
+    // set SQP specific options
+    double nlp_solver_tol_stat = 0.000001;
+    ocp_nlp_solver_opts_set(nlp_config, capsule->nlp_opts, "tol_stat", &nlp_solver_tol_stat);
+
+    double nlp_solver_tol_eq = 0.000001;
+    ocp_nlp_solver_opts_set(nlp_config, capsule->nlp_opts, "tol_eq", &nlp_solver_tol_eq);
+
+    double nlp_solver_tol_ineq = 0.000001;
+    ocp_nlp_solver_opts_set(nlp_config, capsule->nlp_opts, "tol_ineq", &nlp_solver_tol_ineq);
+
+    double nlp_solver_tol_comp = 0.000001;
+    ocp_nlp_solver_opts_set(nlp_config, capsule->nlp_opts, "tol_comp", &nlp_solver_tol_comp);
+
+    int nlp_solver_max_iter = 100;
+    ocp_nlp_solver_opts_set(nlp_config, capsule->nlp_opts, "max_iter", &nlp_solver_max_iter);
+
+    int initialize_t_slacks = 0;
+    ocp_nlp_solver_opts_set(nlp_config, capsule->nlp_opts, "initialize_t_slacks", &initialize_t_slacks);
 
     int print_level = 0;
     ocp_nlp_solver_opts_set(nlp_config, capsule->nlp_opts, "print_level", &print_level);

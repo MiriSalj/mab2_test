@@ -16,7 +16,7 @@
 
 _genname     "RTI"
 _genversion  "7.10"
-_gendate     "05/18/2021 18:13:43"
+_gendate     "05/19/2021 16:01:38"
 _description ""
 _author      "RTI1401 7.10 (02-May-2018)"
 _model       "acados_test"
@@ -28,9 +28,9 @@ _integer_type(32)
 -- No Data Capture blocks within model: use base sample time as sampling period
 sampling_period[0]
 {
-  value:       0.4
+  value:       10.0
   alias:       "HostService"
-  increment:   0.4
+  increment:   10.0
   unit:        "s"
 }
 
